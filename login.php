@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 include('class/database.php');
 class signInUp extends database
 {
@@ -9,26 +11,43 @@ class signInUp extends database
     public function signInFunction()
     {
         if (isset($_POST['signIn'])) {
-            $email = $_POST['emailLogIn'];
+            $agent_name = $_POST['agent_name'];
             $password = $_POST['passwordLogIn'];
 
-            $sql = "select * from user_tbl where email = '$email' ";
+            $sql = "select * from user_tbl where username = '$agent_name' ";
             $res = mysqli_query($this->link, $sql);
             if (mysqli_num_rows($res) > 0) {
                 $row = mysqli_fetch_assoc($res);
                 $pass = $row['password'];
-
+                //password verify will check the hashed password from database and match with users password
                 if (password_verify($password, $pass) == true) {
-                    $_SESSION['email'] = $email;
-                    header('location:create.php');
+                    $_SESSION['name'] = $agent_name;
+                    header('location:booking.php');
                     return $res;
                 } else {
                     $msg = "Wrong password";
                     return $msg;
                 }
             } else {
-                $msg = "Invalid Information";
-                return $msg;
+                $sql = "select * from admin_tbl where username = '$agent_name' ";
+                $res = mysqli_query($this->link, $sql);
+
+                if (mysqli_num_rows($res) > 0) {
+                    $row = mysqli_fetch_assoc($res);
+                    $pass = $row['password'];
+                    //password verify will check the hashed password from database and match with users password
+                    if (password_verify($password, $pass) == true) {
+                        $_SESSION['admin'] = $agent_name;
+                        header('location:admin-booking-history.php');
+                        return $res;
+                    } else {
+                        $msg = "Wrong password";
+                        return $msg;
+                    }
+                } else {
+                    $msg = "Invalid Information";
+                    return $msg;
+                }
             }
         }
         # code...
@@ -64,17 +83,20 @@ $objSignIn = $obj->signInFunction();
 </head>
 
 <body class="bg-light">
-    <?php include('layout/navbar.php'); ?>
 
     <section>
         <div class="container bg-white pr-4 pl-4  log_section pb-5">
 
             <div class="row">
-                <div class="col-md-6 offset-3 ">
+                <div class="col-md-6 offset-lg-3 ">
+
                     <form action="" method="post" data-parsley-validate>
 
                         <div class="text-center">
+
+                            <!-- <button id="msg-btn" class="btn btn-success">Please check it</button> -->
                             <h4 class="font-weight-bold pt-5 pb-4">LOGIN</h4>
+
 
                             <?php if ($objSignIn) { ?>
                             <?php if (strcmp($objSignIn, 'Wrong password') == 0) { ?>
@@ -92,20 +114,16 @@ $objSignIn = $obj->signInFunction();
 
                             <?php } ?>
                         </div>
-                        <input type="email" name="emailLogIn" class="form-control p-4  border-0 bg-light"
-                            placeholder="Enter your email address" required>
+                        <input type="text" name="agent_name" class="form-control p-4  border-0 bg-light"
+                            placeholder="Enter your username name" required>
                         <input type="password" class="form-control mt-4 p-4 border-0 bg-light" name="passwordLogIn"
                             placeholder="Enter your password" required>
 
 
                         <button type="submit" name="signIn"
                             class="btn btn-block font-weight-bold log_btn btn-lg mt-4">LOGIN</button>
-                        <small class="font-weight-bold mt-1 text-muted"><a href="forget_password.php"
-                                style="color: #05445E;">Forget
-                                Password</a></small>
-                        <!-- <hr>
-                        <small class="font-weight-bold mt-1 text-muted">Don't have an account? <a href="register.php"
-                                style="color: #05445E;">Forget Password</a></small> -->
+
+
 
                     </form>
                 </div>
@@ -123,6 +141,17 @@ $objSignIn = $obj->signInFunction();
     <?php include('layout/footer.php'); ?>
 
     <?php include('layout/script.php') ?>
+    <!-- <script>
+    $(document).ready(function() {
+        $('#msg').hide();
+
+        $('#msg-btn').click(function(e) {
+            e.preventDefault();
+            $('#msg').toggle();
+
+        })
+    })
+    </script> -->
 </body>
 
 </html>

@@ -1,5 +1,10 @@
 <?php
 session_start();
+error_reporting(0);
+if (isset($_SESSION['name'])) {
+} else {
+    header('location:login.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +23,7 @@ session_start();
     }
 
     .bg_color {
-        background-color: #fff !important;
+        background-color: #274472 !important;
     }
 
     body {
@@ -67,7 +72,37 @@ session_start();
 </head>
 
 <body class="bg-light">
-    <?php include('layout/navbar.php'); ?>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light bg_color">
+            <div class="container">
+                <a class="navbar-brand font-weight-bold" style="font-family: 'Lato', sans-serif; color: #481639"
+                    href="index.php"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item p-1">
+                            <a class="nav-link text-white font-weight-bold" href="./booking.php">Staff</a>
+                        </li>
+
+
+
+
+
+
+
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </div>
 
 
 

@@ -1,8 +1,8 @@
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light bg_color">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light bg_color">
         <div class="container">
             <a class="navbar-brand font-weight-bold" style="font-family: 'Lato', sans-serif; color: #481639"
-                href="index.php"><img src="images/leaf.jpg" alt=""></a>
+                href="index.php"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -10,58 +10,52 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
+
+                    <?php if (isset($_SESSION['name'])) { ?>
                     <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="index.php">Home</a>
-                    </li>
-
-
-                    <!-- If the user is logged in and session is set then these nav option will show -->
-                    <?php if (isset($_SESSION['email'])) { ?>
-
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="create.php">Create User
-                        </a>
+                        <a class="nav-link text-white font-weight-bold" href="booking.php">Booking</a>
                     </li>
                     <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="result.php">Result
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="about_us.php">About Us
-                        </a>
+                        <a class="nav-link text-white font-weight-bold" href="booking-history.php">Booking History</a>
                     </li>
                     <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="logout.php">Logout
-                        </a>
+                        <a class="nav-link text-white font-weight-bold" href="booking-search.php">Booking Search</a>
                     </li>
-                    <!-- Bell color changing depending on progress -->
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="./password-reset.php">Reset Password</a>
+                    </li>
 
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="logout.php">Logout</a>
+                    </li>
 
+                    <?php } else if (isset($_SESSION['admin'])) { ?>
 
-
-
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="admin-booking-history.php">Admin Booking
+                            History</a>
+                    </li>
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="transaction-list.php">Transaction</a>
+                    </li>
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="./admin-booking-status.php">
+                            Status & Comment</a>
+                    </li>
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="./create-staff.php">Create Staff</a>
+                    </li>
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="logout.php">Logout</a>
+                    </li>
                     <?php } else { ?>
-                    <!-- These are when user is not logged in -->
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="login.php">Login
-                        </a>
-                    </li>
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="register.php">Register
-                        </a>
-                    </li>
-                    <!-- <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="register.php">Register
-                        </a>
-                    </li> -->
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-dark font-weight-bold" href="about_us.php">About Us
-                        </a>
-                    </li>
 
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="login.php">Login</a>
+                    </li>
                     <?php } ?>
+
+
 
 
 

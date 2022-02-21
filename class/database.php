@@ -6,7 +6,7 @@ class database
     private $hostname = "localhost:3325";
     private $username = "root";
     private $password = "";
-    private $dbname = "project_db";
+    private $dbname = "PMS";
 
     // private $hostname = "remotemysql.com";
     // private $username = "u5CBLhyagE";
@@ -30,6 +30,8 @@ class database
         $this->link = mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname); //connected with database
 
         if ($this->link) {
+            // $sSQL = 'SET CHARACTER SET utf8';
+            // mysqli_query($this->link, $sSQL);
             // echo "connected";
         } else {
             echo "not connected";
