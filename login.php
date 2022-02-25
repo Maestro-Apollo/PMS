@@ -1,8 +1,5 @@
 <?php
 session_start();
-
-
-
 include('class/database.php');
 class signInUp extends database
 {
@@ -19,7 +16,7 @@ class signInUp extends database
             if (mysqli_num_rows($res) > 0) {
                 $row = mysqli_fetch_assoc($res);
                 $pass = $row['password'];
-                //password verify will check the hashed password from database and match with users password
+
                 if (password_verify($password, $pass) == true) {
                     $_SESSION['name'] = $agent_name;
                     header('location:booking.php');
@@ -29,13 +26,13 @@ class signInUp extends database
                     return $msg;
                 }
             } else {
-                $sql = "select * from admin_tbl where username = '$agent_name' ";
+                $sql = "select * from admin where username = '$agent_name' ";
                 $res = mysqli_query($this->link, $sql);
 
                 if (mysqli_num_rows($res) > 0) {
                     $row = mysqli_fetch_assoc($res);
                     $pass = $row['password'];
-                    //password verify will check the hashed password from database and match with users password
+
                     if (password_verify($password, $pass) == true) {
                         $_SESSION['admin'] = $agent_name;
                         header('location:admin-booking-history.php');
