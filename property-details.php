@@ -47,7 +47,7 @@ session_start();
     <section>
         <div class="">
 
-            <form id="myForm">
+            <form method="post">
 
 
                 <!-- <form action="" method="post"> -->
@@ -63,7 +63,7 @@ session_start();
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#step-2">
-                                        <strong>Facilties</strong>
+                                        <strong>Facilities</strong>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -86,26 +86,73 @@ session_start();
 
                             <div class="tab-content">
                                 <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
-                                    <h3>Step 1 Content</h3>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has
-                                    survived not only five centuries, but also the leap into electronic typesetting,
-                                    remaining essentially unchanged. It was popularised in the 1960s with the release of
-                                    Letraset sheets containing Lorem Ipsum passages, and more recently with
-                                    desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                    <h3>Building Info</h3>
+                                    <input type="text" class="form-control mt-3" placeholder="Code" name="code"
+                                        required>
+                                    <input type="text" class="form-control mt-3" placeholder="District" name="district"
+                                        required>
+                                    <input type="text" class="form-control mt-3" placeholder="Street" name="street"
+                                        required>
+                                    <input type="text" class="form-control mt-3" placeholder="Building" name="building"
+                                        required>
+                                    <input type="text" class="form-control mt-3" placeholder="Floor" name="floor"
+                                        required>
+                                    <input type="text" class="form-control mt-3" placeholder="Flat" name="flat"
+                                        required>
+                                    <input type="text" class="form-control mt-3" placeholder="No of Rooms"
+                                        name="no_rooms" required>
+                                    <input type="text" class="form-control mt-3" placeholder="Entry Password"
+                                        name="entry_password" required>
                                 </div>
                                 <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
-                                    <h3>Step 2 Content</h3>
-                                    <div>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                        when an unknown printer took a galley of type and scrambled it to make a type
-                                        specimen book. It has survived not only five centuries, but also the leap into
-                                        electronic typesetting, remaining essentially unchanged. It was popularised in
-                                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                                        and more recently with desktop publishing software like Aldus PageMaker
-                                        including
-                                        versions of Lorem Ipsum. </div>
+                                    <h3>Facilities</h3>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Room No</th>
+                                                    <th scope="col">Gross Area</th>
+                                                    <th scope="col">Salesable Area</th>
+                                                    <th scope="col">Rent</th>
+                                                    <th scope="col">Cargo Lift</th>
+                                                    <th scope="col">Customer Lift</th>
+                                                    <th scope="col">24 hours</th>
+                                                    <th scope="col">Windows</th>
+                                                    <th scope="col">Lavatory</th>
+                                                    <th scope="col">Shower</th>
+                                                    <th scope="col">Sink</th>
+                                                    <th scope="col">Wide door</th>
+                                                    <th scope="col">Brickes wall</th>
+                                                    <th scope="col">Seprate room</th>
+                                                    <th scope="col">Electronic keys</th>
+                                                    <th scope="col">Wifi</th>
+                                                    <th scope="col">Remarks</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
