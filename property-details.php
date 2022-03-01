@@ -28,6 +28,10 @@ session_start();
         padding: 0px;
     }
 
+    .table th {
+        white-space: nowrap;
+    }
+
     .bg_color {
         background-color: #274472 !important;
     }
@@ -113,86 +117,219 @@ session_start();
                                                     <th scope="col">Room No</th>
                                                     <th scope="col">Gross Area</th>
                                                     <th scope="col">Salesable Area</th>
-                                                    <th scope="col">Rent</th>
+                                                    <th scope="col">Rent - 租</th>
                                                     <th scope="col">Cargo Lift</th>
                                                     <th scope="col">Customer Lift</th>
                                                     <th scope="col">24 hours</th>
                                                     <th scope="col">Windows</th>
                                                     <th scope="col">Lavatory</th>
-                                                    <th scope="col">Shower</th>
-                                                    <th scope="col">Sink</th>
+                                                    <th scope="col">Shower 淋浴</th>
+                                                    <th scope="col">Sink 下沉</th>
                                                     <th scope="col">Wide door</th>
                                                     <th scope="col">Brickes wall</th>
                                                     <th scope="col">Seprate room</th>
                                                     <th scope="col">Electronic keys</th>
-                                                    <th scope="col">Wifi</th>
+                                                    <th scope="col">Wifi 无线上网</th>
                                                     <th scope="col">Remarks</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
+                                                    <td><input type="text" class="form-control" name="gross_area"></td>
+                                                    <td><input type="text" class="form-control" name="salesable_area">
+                                                    </td>
+                                                    <td><input type="text" class="form-control" name="rent"></td>
+                                                    <td><select name="Cargo_Lift" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Customer_Lift" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="hr" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Windows" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Lavatory" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Shower" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Sink" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Wide_door" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Brickes_wall" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Seprate_room" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="Electronic_keys" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="Wifi" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><input type="text" class="form-control" name="Remarks"></td>
+                                                </tr>
+                                                <div id="output">
+                                                </div>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
+                                    <h3>Types</h3>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Room No</th>
+                                                    <th scope="col">Individual</th>
+                                                    <th scope="col">Seprate</th>
+                                                    <th scope="col">Studio</th>
+                                                    <th scope="col">Yoga</th>
+                                                    <th scope="col">Class</th>
+                                                    <th scope="col">Overnight</th>
+                                                    <th scope="col">Warehouse & office</th>
+                                                    <th scope="col">Beauty</th>
+                                                    <th scope="col">Upstair shop</th>
+                                                    <th scope="col">Band</th>
+                                                    <th scope="col">Recording room</th>
+                                                    <th scope="col">1 to 1 piano</th>
+                                                    <th scope="col">Painting</th>
+                                                    <th scope="col">Remarks</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+
+                                                    <td><select name="Individual" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Seprate" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="Studio" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Yoga" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Class" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Overnight" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Warehouse_office" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Beauty" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Upstair_shop" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Band" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="Recording_room" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="piano" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Painting" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><input type="text" class="form-control" name="Remarks"></td>
                                                 </tr>
 
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has
-                                    survived not only five centuries, but also the leap into electronic typesetting,
-                                    remaining essentially unchanged. It was popularised in the 1960s with the release of
-                                    Letraset sheets containing Lorem Ipsum passages, and more recently with
-                                    desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                </div>
                                 <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
-                                    <h3>Step 4 Content</h3>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has
-                                    survived not only five centuries, but also the leap into electronic typesetting,
-                                    remaining essentially unchanged. It was popularised in the 1960s with the release of
-                                    Letraset sheets containing Lorem Ipsum passages, and more recently with
-                                    desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                    when an unknown printer took a galley of type and scrambled it to make a type
-                                    specimen book. It has survived not only five centuries, but also the leap into
-                                    electronic typesetting, remaining essentially unchanged. It was popularised in
-                                    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                                    more recently with desktop publishing software like Aldus PageMaker including
-                                    versions of Lorem Ipsum.
+                                    <h3>Landlord Details</h3>
+
+                                    <input type="text" class="form-control mt-3" placeholder="Who is in Charge?"
+                                        name="charge" required>
+                                    <input type="tel" class="form-control mt-3" placeholder="Tel 1" name="tel1"
+                                        required>
+                                    <input type="tel" class="form-control mt-3" placeholder="Tel 2" name="tel2">
+                                    <input type="tel" class="form-control mt-3" placeholder="Tel 3" name="tel3">
+                                    <input type="text" class="form-control mt-3" placeholder="Landlord Name"
+                                        name="landlord_name" required>
+                                    <input type="text" class="form-control mt-3" placeholder="Bank" name="bank"
+                                        required>
+                                    <input type="text" class="form-control mt-3" placeholder="Bank account"
+                                        name="bank_account" required>
+                                    <input type="text" class="form-control mt-3" placeholder="Remake" name="remake"
+                                        required>
                                 </div>
                                 <div id="step-5" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
-                                    <h3>Step 5 Content</h3>
+                                    <h3>Photos</h3>
 
-                                    survived not only five centuries, but also the leap into electronic typesetting,
-                                    remaining essentially unchanged. It was popularised in the 1960s with the release of
-                                    Letraset sheets containing Lorem Ipsum passages, and more recently with
-                                    desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the esktop publishing software like Aldus PageMaker including
-                                    versions of Lorem Ipsum.
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Room No</th>
+                                                    <th scope="col">Photos</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+
+                                                    <td><input type="file" multiple></td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
                             </div>
