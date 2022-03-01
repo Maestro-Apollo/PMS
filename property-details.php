@@ -104,7 +104,7 @@ session_start();
                                     <input type="text" class="form-control mt-3" placeholder="Flat" name="flat"
                                         required>
                                     <input type="text" class="form-control mt-3" placeholder="No of Rooms"
-                                        name="no_rooms" required>
+                                        name="no_rooms" id="no_rooms" required>
                                     <input type="text" class="form-control mt-3" placeholder="Entry Password"
                                         name="entry_password" required>
                                 </div>
@@ -133,68 +133,10 @@ session_start();
                                                     <th scope="col">Remarks</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td><input type="text" class="form-control" name="gross_area"></td>
-                                                    <td><input type="text" class="form-control" name="salesable_area">
-                                                    </td>
-                                                    <td><input type="text" class="form-control" name="rent"></td>
-                                                    <td><select name="Cargo_Lift" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Customer_Lift" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </td>
-                                                    <td><select name="hr" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Windows" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Lavatory" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Shower" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Sink" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Wide_door" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Brickes_wall" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Seprate_room" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </td>
-                                                    <td><select name="Electronic_keys" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </td>
-                                                    <td><select name="Wifi" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><input type="text" class="form-control" name="Remarks"></td>
-                                                </tr>
-                                                <div id="output">
-                                                </div>
+                                            <tbody id="tb1">
+
+
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -361,6 +303,81 @@ session_start();
     });
     </script>
     <script src="js/jquery.smartWizard.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#no_rooms').keyup(function() {
+
+            let myCode = $('#no_rooms').val();
+
+            // $('#output').html(myCode);
+            if (myCode == '') {
+                $('#tb1').empty();
+            }
+            for (let i = 1; i <= myCode; i++) {
+                $('#tb1').append(`<tr id="d1"><th scope="row">${i}</th>
+                                                    <td><input type="text" class="form-control" name="gross_area[]">
+                                                    </td>
+                                                    <td><input type="text" class="form-control" name="salesable_area[]">
+                                                    </td>
+                                                    <td><input type="text" class="form-control" name="rent[]"></td>
+                                                    <td><select name="Cargo_Lift[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Customer_Lift[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="hr[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Windows[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Lavatory[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Shower[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Sink[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Wide_door[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Brickes_wall[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><select name="Seprate_room[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="Electronic_keys[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><select name="Wifi[]" id="" class="form-control">
+                                                            <option value="Yes" selected>Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select></td>
+                                                    <td><input type="text" class="form-control" name="Remarks[]"></td>
+                                                </tr>`);
+            }
+        })
+
+    });
+    </script>
     <script type="text/javascript">
     $(document).ready(function() {
 
