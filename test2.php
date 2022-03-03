@@ -19,16 +19,16 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
     $(document).ready(function() {
-        $('#code').keyup(function() {
+        $('#code').on('input', function() {
             let myCode = $('#code').val();
+            $('#output').empty();
 
-            if (myCode == '') {
-                $('#output').empty();
-            }
+            let string = '';
             for (let i = 1; i <= myCode; i++) {
-                $('#output').append(i + '<br>');
+                string += `${i}<br>`;
             }
-        })
+            $('#output').append(string);
+        });
     });
     </script>
 </body>
