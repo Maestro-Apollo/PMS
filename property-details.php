@@ -16,6 +16,58 @@ class signInUp extends database
             $flat = addslashes(trim($_POST['flat']));
             $no_rooms = addslashes(trim($_POST['no_rooms']));
             $entry_password = addslashes(trim($_POST['entry_password']));
+
+            $sql1 = "INSERT INTO `building_info` (`building_id`, `code`, `district`, `street`, `building`, `floor`, `flat`, `no_room`, `enter_password`, `building_created_at`) VALUES (NULL, '$code', '$district', '$street', '$building', '$floor', '$flat', '$no_rooms', '$entry_password', CURRENT_TIMESTAMP)";
+
+            $res1 = mysqli_query($this->link, $sql1);
+
+            for ($i = 0; $i < count($_POST['gross_area']); $i++) {
+                $gross_area = $_POST['gross_area'][$i];
+                $salesable_area = $_POST['salesable_area'][$i];
+                $rent = $_POST['rent'][$i];
+                $Cargo_Lift = $_POST['Cargo_Lift'][$i];
+                $Customer_Lift = $_POST['Customer_Lift'][$i];
+                $hr = $_POST['hr'][$i];
+                $Windows = $_POST['Windows'][$i];
+                $Lavatory = $_POST['Lavatory'][$i];
+                $Shower = $_POST['Shower'][$i];
+                $Sink = $_POST['Sink'][$i];
+                $Wide_door = $_POST['Wide_door'][$i];
+                $Brickes_wall = $_POST['Brickes_wall'][$i];
+                $Seprate_room = $_POST['Seprate_room'][$i];
+                $Electronic_keys = $_POST['Electronic_keys'][$i];
+                $Wifi = $_POST['Wifi'][$i];
+                $Remarks = $_POST['Remarks'][$i];
+                $room_num = $i++;
+
+                $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`, `cargo_lift`, `customer_lift`, `tf_hours`, `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Cargo_Lift', '$Customer_Lift', '$hr', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
+
+                mysqli_query($this->link, $sql2);
+            }
+
+            for ($j = 0; $j < count($_POST['Individual']); $j++) {
+                $Individual = $_POST['Individual'][$j];
+                $Seprate = $_POST['Seprate'][$j];
+                $Studio = $_POST['Studio'][$j];
+                $Yoga = $_POST['Yoga'][$j];
+                $Class = $_POST['Class'][$j];
+                $Overnight = $_POST['Overnight'][$j];
+                $Warehouse_office = $_POST['Warehouse_office'][$j];
+                $Beauty = $_POST['Beauty'][$j];
+                $Upstair_shop = $_POST['Upstair_shop'][$j];
+                $Upstair_shop = $_POST['Upstair_shop'][$j];
+                $Band = $_POST['Band'][$j];
+                $Recording_room = $_POST['Recording_room'][$j];
+                $piano = $_POST['piano'][$j];
+                $Painting = $_POST['Painting'][$j];
+                $Remarks2 = $_POST['Remarks'][$j];
+                $room_no = $j++;
+
+
+                $sql3 = "INSERT INTO `types` (`types_id`, `individual`, `seprate`, `studio`, `yoga`, `class`, `overnight`, `warehouse_office`, `beauty`, `upstair_shop`, `band`, `recording_room`, `piano`, `painting`, `remarks`, `code`, `types_created_at`,`types_room_no`) VALUES (NULL, '$Individual', '$Seprate', '$Studio', '$Yoga', '$Class', '$Overnight', '$Warehouse_office', '$Beauty', '$Upstair_shop', '$Band', '$Recording_room', '$piano', '$Painting', '$Remarks2', '$code', CURRENT_TIMESTAMP,'$room_no')";
+
+                mysqli_query($this->link, $sql3);
+            }
         }
 
         # code...
