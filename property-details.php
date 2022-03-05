@@ -37,7 +37,7 @@ class signInUp extends database
                 $Seprate_room = $_POST['Seprate_room'][$i];
                 $Electronic_keys = $_POST['Electronic_keys'][$i];
                 $Wifi = $_POST['Wifi'][$i];
-                $Remarks = $_POST['Remarks'][$i];
+                $Remarks = addslashes(trim($_POST['Remarks'][$i]));
                 $room_num = $i++;
 
                 $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`, `cargo_lift`, `customer_lift`, `tf_hours`, `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Cargo_Lift', '$Customer_Lift', '$hr', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
@@ -60,7 +60,7 @@ class signInUp extends database
                 $Recording_room = $_POST['Recording_room'][$j];
                 $piano = $_POST['piano'][$j];
                 $Painting = $_POST['Painting'][$j];
-                $Remarks2 = $_POST['Remarks'][$j];
+                $Remarks2 = addslashes(trim($_POST['Remarks'][$j]));
                 $room_no = $j++;
 
 
@@ -68,9 +68,33 @@ class signInUp extends database
 
                 mysqli_query($this->link, $sql3);
             }
-        }
 
-        # code...
+            $charge = addslashes(trim($_POST['charge']));
+            $tel1 = addslashes(trim($_POST['tel1']));
+            $landlord_name = addslashes(trim($_POST['landlord_name']));
+            $bank = addslashes(trim($_POST['bank']));
+            $bank_account = addslashes(trim($_POST['bank_account']));
+            $remakeLand = addslashes(trim($_POST['remake']));
+            $tel2 = ($_POST['tel2']) ? $_POST['tel2'] : '';
+            $tel3 = ($_POST['tel3']) ? $_POST['tel3'] : '';
+
+            $sql4 = "INSERT INTO `landlord_details` (`landlord_id`, `in_charges`, `tel1`, `tel2`, `tel3`, `landlord_name`, `bank`, `bank_acc`, `remarks`, `code`, `landlord_created_at`) VALUES (NULL, '$charge', '$tel1', '$tel2', '$tel3', '$landlord_name', '$bank', '$bank_account', '$remakeLand', '$code', CURRENT_TIMESTAMP)";
+
+            $res4 = mysqli_query($this->link, $sql4);
+
+            for ($ir = 0; $ir < count($_FILES['image']['name']); $ir++) {
+                $ir++;
+                $files = date("d-m-Y") . '_' . date("h-i-sa") . '_' . '@' . $_FILES['image']['name'][$ir];
+
+                $target = 'files/' . $files;
+                move_uploaded_file($_FILES['image']['tmp_name'][$ir], $target);
+
+                if ($_FILES['image']['tmp_name'][$ir] != '') {
+                    $sqlFile = "INSERT INTO `photos` (`image_id`, `image`, `room_number`, `code`, `image_created_at`) VALUES (NULL, '$files', '$ir', '$code', CURRENT_TIMESTAMP)";
+                    mysqli_query($this->link, $sqlFile);
+                }
+            }
+        }
     }
 }
 $obj = new signInUp;
