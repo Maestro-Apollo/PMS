@@ -20,6 +20,7 @@ class signInUp extends database
             $sql1 = "INSERT INTO `building_info` (`building_id`, `code`, `district`, `street`, `building`, `floor`, `flat`, `no_room`, `enter_password`, `building_created_at`) VALUES (NULL, '$code', '$district', '$street', '$building', '$floor', '$flat', '$no_rooms', '$entry_password', CURRENT_TIMESTAMP)";
 
             $res1 = mysqli_query($this->link, $sql1);
+            $add = 1;
 
             for ($i = 0; $i < count($_POST['gross_area']); $i++) {
                 $gross_area = $_POST['gross_area'][$i];
@@ -38,7 +39,7 @@ class signInUp extends database
                 $Electronic_keys = $_POST['Electronic_keys'][$i];
                 $Wifi = $_POST['Wifi'][$i];
                 $Remarks = addslashes(trim($_POST['Remarks'][$i]));
-                $room_num = $i++;
+                $room_num = $i + $add;
 
                 $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`, `cargo_lift`, `customer_lift`, `tf_hours`, `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Cargo_Lift', '$Customer_Lift', '$hr', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
 
@@ -61,7 +62,7 @@ class signInUp extends database
                 $piano = $_POST['piano'][$j];
                 $Painting = $_POST['Painting'][$j];
                 $Remarks2 = addslashes(trim($_POST['Remarks'][$j]));
-                $room_no = $j++;
+                $room_no = $j + $add;
 
 
                 $sql3 = "INSERT INTO `types` (`types_id`, `individual`, `seprate`, `studio`, `yoga`, `class`, `overnight`, `warehouse_office`, `beauty`, `upstair_shop`, `band`, `recording_room`, `piano`, `painting`, `remarks`, `code`, `types_created_at`,`types_room_no`) VALUES (NULL, '$Individual', '$Seprate', '$Studio', '$Yoga', '$Class', '$Overnight', '$Warehouse_office', '$Beauty', '$Upstair_shop', '$Band', '$Recording_room', '$piano', '$Painting', '$Remarks2', '$code', CURRENT_TIMESTAMP,'$room_no')";
@@ -93,6 +94,9 @@ class signInUp extends database
                     $sqlFile = "INSERT INTO `photos` (`image_id`, `image`, `room_number`, `code`, `image_created_at`) VALUES (NULL, '$files', '$ir', '$code', CURRENT_TIMESTAMP)";
                     mysqli_query($this->link, $sqlFile);
                 }
+            }
+            if ($res1 && $res4) {
+                echo "Added";
             }
         }
     }
