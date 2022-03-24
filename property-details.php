@@ -39,7 +39,7 @@ class signInUp extends database
                 $Electronic_keys = $_POST['Electronic_keys'][$i];
                 $Wifi = $_POST['Wifi'][$i];
                 $Remarks = addslashes(trim($_POST['Remarks'][$i]));
-                $room_num = $i + $add;
+                $room_num = $i + 1;
 
                 $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`, `cargo_lift`, `customer_lift`, `tf_hours`, `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Cargo_Lift', '$Customer_Lift', '$hr', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
 
@@ -62,7 +62,7 @@ class signInUp extends database
                 $piano = $_POST['piano'][$j];
                 $Painting = $_POST['Painting'][$j];
                 $Remarks2 = addslashes(trim($_POST['Remarks'][$j]));
-                $room_no = $j + $add;
+                $room_no = $j + 1;
 
 
                 $sql3 = "INSERT INTO `types` (`types_id`, `individual`, `seprate`, `studio`, `yoga`, `class`, `overnight`, `warehouse_office`, `beauty`, `upstair_shop`, `band`, `recording_room`, `piano`, `painting`, `remarks`, `code`, `types_created_at`,`types_room_no`) VALUES (NULL, '$Individual', '$Seprate', '$Studio', '$Yoga', '$Class', '$Overnight', '$Warehouse_office', '$Beauty', '$Upstair_shop', '$Band', '$Recording_room', '$piano', '$Painting', '$Remarks2', '$code', CURRENT_TIMESTAMP,'$room_no')";
@@ -83,16 +83,23 @@ class signInUp extends database
 
             $res4 = mysqli_query($this->link, $sql4);
 
-            for ($ir = 0; $ir < count($_FILES['image']['name']); $ir++) {
-                $ir++;
-                $files = date("d-m-Y") . '_' . date("h-i-sa") . '_' . '@' . $_FILES['image']['name'][$ir];
+            for ($ir = 0; $ir < count($_POST['Individual']); $ir++) {
 
-                $target = 'files/' . $files;
-                move_uploaded_file($_FILES['image']['tmp_name'][$ir], $target);
+                $room_number = $ir + 1;
+                $szFiles = sizeof($_FILES['item']['name']['image' . $room_number]);
 
-                if ($_FILES['image']['tmp_name'][$ir] != '') {
-                    $sqlFile = "INSERT INTO `photos` (`image_id`, `image`, `room_number`, `code`, `image_created_at`) VALUES (NULL, '$files', '$ir', '$code', CURRENT_TIMESTAMP)";
-                    mysqli_query($this->link, $sqlFile);
+
+                for ($second = 0; $second < $szFiles; $second++) {
+                    if ($_FILES['item']['name']['image' . $room_number][$second] != '') {
+                        $files = date("d-m-Y") . '_' . date("h-i-sa") . '_' . '@' . $_FILES['item']['name']['image' . $room_number][$second];
+
+                        $target = 'files/' . $files;
+                        move_uploaded_file($_FILES['item']['tmp_name']['image' . $room_number][$second], $target);
+
+
+                        $sqlFile = "INSERT INTO `photos` (`image_id`, `image`, `room_number`, `code`, `image_created_at`) VALUES (NULL, '$files', '$room_number', '$code', CURRENT_TIMESTAMP)";
+                        mysqli_query($this->link, $sqlFile);
+                    }
                 }
             }
             if ($res1 && $res4) {
@@ -103,6 +110,9 @@ class signInUp extends database
 }
 $obj = new signInUp;
 $objSignIn = $obj->signInFunction();
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -481,7 +491,7 @@ $objSignIn = $obj->signInFunction();
                 string3 += (`<tr>
                                                     <th scope="row">${i}</th>
 
-                                                    <td><input type="file" name="image[]" multiple></td>
+                                                    <td><input type="file" name="item[image${i}][]" multiple></td>
 
                                                 </tr>`);
             }

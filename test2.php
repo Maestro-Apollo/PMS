@@ -1,3 +1,21 @@
+<?php
+
+if (isset($_POST['submit'])) {
+    $szFiles = sizeof($_FILES['item']['name']['image2']);
+
+    echo $szFiles;
+
+
+
+    for ($i = 0; $i < $szFiles; $i++) {
+        $file_name   = $_FILES['item']['name']['image2'][$i];
+        if ($_FILES['item']['name']['image2'][$i] == '') {
+            echo 'empty';
+        }
+        echo $file_name . '<br>';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,15 +27,18 @@
 </head>
 
 <body>
-    <input type="number" id="code">
-    <br>
-    <br>
-    <div id="output"></div>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="item[image2][]" multiple>
+
+        <input type="submit" name="submit">
+    </form>
+
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script>
+    <!-- <script>
     $(document).ready(function() {
         $('#code').on('input', function() {
             let myCode = $('#code').val();
@@ -30,7 +51,7 @@
             $('#output').append(string);
         });
     });
-    </script>
+    </script> -->
 </body>
 
 </html>
