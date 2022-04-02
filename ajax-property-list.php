@@ -52,9 +52,10 @@ if ($request == 1) {
         $deleteButton = "<button class='btn btn-sm btn-danger deleteUser' data-id='" . $row['building_id'] . "'>Delete</button>";
 
         $action = $updateButton . " " . $deleteButton;
+        $link = '<a href="general-page.php?code=' . $row['code'] . '">' . $row['code'] . '</a>';
 
         $data[] = array(
-            "code" => $row['code'],
+            "code" => $link,
             "district" => $row['district'],
             "street" => $row['street'],
             "building" => $row['building'],
