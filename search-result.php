@@ -182,14 +182,17 @@ $objShow = $obj->searchFunc();
     <section>
         <div class="container bg-white p-4  log_section pb-5">
 
-            <h3 class="font-weight-bold">These are <?php echo mysqli_num_rows($objShow); ?> results find</h3>
+            <h3 class="font-weight-bold">These are <?php echo ($objShow) ? mysqli_num_rows($objShow) : 0; ?> results
+                find</h3>
             <small class="text-nowrap text-danger">(Building/Floor/Flat/Room/Gross Area/Saleable Area/Price)</small>
             <?php if ($objShow) { ?>
             <?php while ($row = mysqli_fetch_assoc($objShow)) { ?>
             <nav aria-label="breadcrumb mb-1 mt-1">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#"><?php echo $row['building']; ?></a></li>
-                    <li class="breadcrumb-item"><a href="#"><?php echo $row['floor']; ?></a></li>
+                    <li class="breadcrumb-item"><a href="./general-page.php?code=<?php echo $row['code']; ?>"
+                            target="_blank"><?php echo $row['building']; ?></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php echo $row['floor']; ?></li>
                     <li class="breadcrumb-item active" aria-current="page"><?php echo $row['flat']; ?></li>
                     <li class="breadcrumb-item active" aria-current="page"><?php echo $row['no_room']; ?></li>
                     <li class="breadcrumb-item active" aria-current="page"><?php echo $row['gross_area']; ?></li>
@@ -203,8 +206,8 @@ $objShow = $obj->searchFunc();
             <?php mysqli_data_seek($objShow, 0) ?>
 
             <h4 class="font-weight-bold mt-3">Photos</h4>
-            <a href="https://api.whatsapp.com/send?text=www.google.com" data-action="share/whatsapp/share">Share via
-                Whatsapp web</a>
+            <!-- <a href="https://api.whatsapp.com/send?text=www.google.com" data-action="share/whatsapp/share">Share via
+                Whatsapp web</a> -->
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
 

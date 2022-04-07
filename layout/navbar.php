@@ -11,49 +11,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
 
-                    <?php if (isset($_SESSION['name'])) { ?>
                     <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="booking.php">Booking</a>
+                        <a class="nav-link text-white font-weight-bold" href="./property-details.php">Add Property</a>
                     </li>
                     <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="booking-history.php">Booking History</a>
+                        <a class="nav-link text-white font-weight-bold" href="./property-list.php">Property List</a>
                     </li>
                     <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="booking-search.php">Booking Search</a>
+                        <a class="nav-link text-white font-weight-bold" href="./search-page.php">Property Search</a>
                     </li>
-                    <li class="nav-item p-1">
+                    <!-- <li class="nav-item p-1">
                         <a class="nav-link text-white font-weight-bold" href="./password-reset.php">Reset Password</a>
                     </li>
 
                     <li class="nav-item p-1">
                         <a class="nav-link text-white font-weight-bold" href="logout.php">Logout</a>
-                    </li>
+                    </li> -->
 
-                    <?php } else if (isset($_SESSION['admin'])) { ?>
 
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="admin-booking-history.php">Admin Booking
-                            History</a>
-                    </li>
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="transaction-list.php">Transaction</a>
-                    </li>
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="./admin-booking-status.php">
-                            Status & Comment</a>
-                    </li>
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="./create-staff.php">Create Staff</a>
-                    </li>
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="logout.php">Logout</a>
-                    </li>
-                    <?php } else { ?>
-
-                    <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="login.php">Login</a>
-                    </li>
-                    <?php } ?>
 
 
 

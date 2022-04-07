@@ -298,7 +298,8 @@ $rowLandLord = mysqli_fetch_assoc($objLandlord);
                                 <?php if ($photos) { ?>
                                 <?php while ($all = mysqli_fetch_assoc($photos)) { ?>
                                 <div class="col-md-4">
-                                    <img src="files/<?php echo $all['image']; ?>" alt="">
+                                    <a href="files/<?php echo $all['image']; ?>"><img
+                                            src="files/<?php echo $all['image']; ?>" alt=""></a>
                                 </div>
                                 <?php } ?>
                                 <?php } ?>
