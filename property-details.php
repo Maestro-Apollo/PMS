@@ -17,11 +17,15 @@ class signInUp extends database
             $street = addslashes(trim($_POST['street']));
             $building = addslashes(trim($_POST['building']));
             $floor = addslashes(trim($_POST['floor']));
+            $block = addslashes(trim($_POST['block']));
             $flat = addslashes(trim($_POST['flat']));
             $no_rooms = addslashes(trim($_POST['no_rooms']));
+            $cargo_lift = addslashes(trim($_POST['cargo_lift']));
+            $customer_lift = addslashes(trim($_POST['customer_lift']));
+            $tf_hr = addslashes(trim($_POST['tf_hr']));
             $entry_password = addslashes(trim($_POST['entry_password']));
 
-            $sql1 = "INSERT INTO `building_info` (`building_id`, `code`, `district`, `street`, `building`, `floor`, `flat`, `no_room`, `enter_password`, `building_created_at`) VALUES (NULL, '$code', '$district', '$street', '$building', '$floor', '$flat', '$no_rooms', '$entry_password', CURRENT_TIMESTAMP)";
+            $sql1 = "INSERT INTO `building_info` (`building_id`, `code`, `district`, `street`, `building`, `floor`, `flat`, `no_room`, `enter_password`, `building_created_at`,`block`,`cargo_lift`,`customer_lift`,`tf_hr`) VALUES (NULL, '$code', '$district', '$street', '$building', '$floor', '$flat', '$no_rooms', '$entry_password', CURRENT_TIMESTAMP,'$block','$cargo_lift','$customer_lift','$tf_hr')";
 
             $res1 = mysqli_query($this->link, $sql1);
             $add = 1;
@@ -30,9 +34,7 @@ class signInUp extends database
                 $gross_area = $_POST['gross_area'][$i];
                 $salesable_area = $_POST['salesable_area'][$i];
                 $rent = $_POST['rent'][$i];
-                $Cargo_Lift = $_POST['Cargo_Lift'][$i];
-                $Customer_Lift = $_POST['Customer_Lift'][$i];
-                $hr = $_POST['hr'][$i];
+
                 $Windows = $_POST['Windows'][$i];
                 $Lavatory = $_POST['Lavatory'][$i];
                 $Shower = $_POST['Shower'][$i];
@@ -45,7 +47,7 @@ class signInUp extends database
                 $Remarks = addslashes(trim($_POST['Remarks'][$i]));
                 $room_num = $i + 1;
 
-                $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`, `cargo_lift`, `customer_lift`, `tf_hours`, `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Cargo_Lift', '$Customer_Lift', '$hr', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
+                $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`,  `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
 
                 mysqli_query($this->link, $sql2);
             }
@@ -217,22 +219,77 @@ $objSignIn = $obj->signInFunction();
                             <div class="tab-content">
                                 <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
                                     <h3>Building Info</h3>
-                                    <input type="text" class="form-control mt-3" placeholder="Code" name="code"
-                                        required>
-                                    <input type="text" class="form-control mt-3" placeholder="District" name="district"
-                                        required>
-                                    <input type="text" class="form-control mt-3" placeholder="Street" name="street"
-                                        required>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control mt-3" placeholder="Code" name="code"
+                                                required>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control mt-3" placeholder="District"
+                                                name="district">
+                                        </div>
+                                    </div>
+
+
+                                    <input type="text" class="form-control mt-3" placeholder="Street" name="street">
                                     <input type="text" class="form-control mt-3" placeholder="Building" name="building"
                                         required>
-                                    <input type="text" class="form-control mt-3" placeholder="Floor" name="floor"
-                                        required>
-                                    <input type="text" class="form-control mt-3" placeholder="Flat" name="flat"
-                                        required>
-                                    <input type="number" class="form-control mt-3" placeholder="No of Rooms"
-                                        name="no_rooms" id="no_rooms" required>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control mt-3" placeholder="Block"
+                                                name="block">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control mt-3" placeholder="Floor"
+                                                name="floor">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control mt-3" placeholder="Flat" name="flat">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" class="form-control mt-3" placeholder="No of Rooms"
+                                                name="no_rooms" id="no_rooms" required>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <p class="mb-0">Room Display By</p>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="customRadioInline1" name="display"
+                                                class="custom-control-input" value="alp">
+                                            <label class="custom-control-label"
+                                                for="customRadioInline1">A,B,C,D...</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="customRadioInline2" name="display"
+                                                class="custom-control-input" value="num" checked>
+                                            <label class="custom-control-label"
+                                                for="customRadioInline2">1,2,3,4...</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control mt-3" placeholder="Cargo Lift"
+                                                name="cargo_lift">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control mt-3" placeholder="Customer Lift"
+                                                name="customer_lift">
+                                        </div>
+                                        <div class="col-6 offset-3">
+                                            <select id="" name="tf_hr" class="form-control mt-3">
+                                                <option selected disabled>24 Hours</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
                                     <input type="text" class="form-control mt-3" placeholder="Entry Password"
-                                        name="entry_password" required>
+                                        name="entry_password">
+                                    <button type="submit" name="submit"
+                                        class="btn btn-block font-weight-bold log_btn btn-lg mt-4">SUBMIT</button>
                                 </div>
                                 <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
                                     <h3>Facilities</h3>
@@ -244,9 +301,7 @@ $objSignIn = $obj->signInFunction();
                                                     <th scope="col">Gross Area</th>
                                                     <th scope="col">Salesable Area</th>
                                                     <th scope="col">Rent - 租</th>
-                                                    <th scope="col">Cargo Lift</th>
-                                                    <th scope="col">Customer Lift</th>
-                                                    <th scope="col">24 hours</th>
+
                                                     <th scope="col">Windows</th>
                                                     <th scope="col">Lavatory</th>
                                                     <th scope="col">Shower 淋浴</th>
@@ -303,19 +358,16 @@ $objSignIn = $obj->signInFunction();
                                     <h3>Landlord Details</h3>
 
                                     <input type="text" class="form-control mt-3" placeholder="Who is in Charge?"
-                                        name="charge" required>
-                                    <input type="tel" class="form-control mt-3" placeholder="Tel 1" name="tel1"
-                                        required>
+                                        name="charge">
+                                    <input type="tel" class="form-control mt-3" placeholder="Tel 1" name="tel1">
                                     <input type="tel" class="form-control mt-3" placeholder="Tel 2" name="tel2">
                                     <input type="tel" class="form-control mt-3" placeholder="Tel 3" name="tel3">
                                     <input type="text" class="form-control mt-3" placeholder="Landlord Name"
-                                        name="landlord_name" required>
-                                    <input type="text" class="form-control mt-3" placeholder="Bank" name="bank"
-                                        required>
+                                        name="landlord_name">
+                                    <input type="text" class="form-control mt-3" placeholder="Bank" name="bank">
                                     <input type="text" class="form-control mt-3" placeholder="Bank account"
-                                        name="bank_account" required>
-                                    <input type="text" class="form-control mt-3" placeholder="Remake" name="remake"
-                                        required>
+                                        name="bank_account">
+                                    <input type="text" class="form-control mt-3" placeholder="Remake" name="remake">
                                 </div>
                                 <div id="step-5" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
                                     <h3>Photos</h3>
@@ -389,19 +441,6 @@ $objSignIn = $obj->signInFunction();
                                                     <td><input type="number" class="form-control" name="salesable_area[]">
                                                     </td>
                                                     <td><input type="number" class="form-control" name="rent[]"></td>
-                                                    <td><select name="Cargo_Lift[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Customer_Lift[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </td>
-                                                    <td><select name="hr[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
                                                     <td><select name="Windows[]" id="" class="form-control">
                                                             <option value="Yes" selected>Yes</option>
                                                             <option value="No">No</option>

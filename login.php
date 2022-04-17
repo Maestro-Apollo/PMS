@@ -16,9 +16,23 @@ class signInUp extends database
             if (mysqli_num_rows($res) > 0) {
                 $row = mysqli_fetch_assoc($res);
                 $pass = $row['password'];
-
+                $cookie_username = "cookie_username";
+                $cookie_password = "cookie_password";
                 if (password_verify($password, $pass) == true) {
+
                     $_SESSION['name'] = $agent_name;
+                    if (!empty($_POST['remember'])) {
+                        setcookie($cookie_username, $agent_name, time() + 315360000);
+                        setcookie($cookie_password, $password, time() + 315360000);
+                    } else {
+                        if (isset($_COOKIE[$cookie_username])) {
+                            setcookie($cookie_username, '');
+                        }
+                        if (isset($_COOKIE[$cookie_password])) {
+                            setcookie($cookie_password, '');
+                        }
+                    }
+
                     header('location:property-details.php');
                     return $res;
                 } else {
@@ -32,9 +46,21 @@ class signInUp extends database
                 if (mysqli_num_rows($res) > 0) {
                     $row = mysqli_fetch_assoc($res);
                     $pass = $row['password'];
-
+                    $cookie_username = "cookie_username";
+                    $cookie_password = "cookie_password";
                     if (password_verify($password, $pass) == true) {
                         $_SESSION['admin'] = $agent_name;
+                        if (!empty($_POST['remember'])) {
+                            setcookie($cookie_username, $agent_name, time() + 315360000);
+                            setcookie($cookie_password, $password, time() + 315360000);
+                        } else {
+                            if (isset($_COOKIE[$cookie_username])) {
+                                setcookie($cookie_username, '');
+                            }
+                            if (isset($_COOKIE[$cookie_password])) {
+                                setcookie($cookie_password, '');
+                            }
+                        }
                         header('location:admin-booking-history.php');
                         return $res;
                     } else {
@@ -111,11 +137,22 @@ $objSignIn = $obj->signInFunction();
 
                             <?php } ?>
                         </div>
-                        <input type="text" name="agent_name" class="form-control p-4  border-0 bg-light"
+                        <input type="text" name="agent_name" value="<?php if (isset($_COOKIE['cookie_username'])) {
+                                                                        echo $_COOKIE['cookie_username'];
+                                                                    } ?>" class="form-control p-4  border-0 bg-light"
                             placeholder="Enter your username name" required>
-                        <input type="password" class="form-control mt-4 p-4 border-0 bg-light" name="passwordLogIn"
-                            placeholder="Enter your password" required>
-
+                        <input type="password" value="<?php if (isset($_COOKIE['cookie_password'])) {
+                                                            echo $_COOKIE['cookie_password'];
+                                                        } ?>" class="form-control mt-4 p-4 border-0 bg-light"
+                            name="passwordLogIn" placeholder="Enter your password" required>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox"
+                                <?php if (isset($_COOKIE['cookie_username'])) { ?> checked <?php } ?> id="remember"
+                                name="remember">
+                            <label class="form-check-label" for="remember">
+                                Remember Me
+                            </label>
+                        </div>
 
                         <button type="submit" name="signIn"
                             class="btn btn-block font-weight-bold log_btn btn-lg mt-4">LOGIN</button>
