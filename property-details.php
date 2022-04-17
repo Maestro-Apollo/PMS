@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_SESSION['name'])) {
+} else {
+    header('location:login.php');
+}
 include_once('class/database.php');
 class signInUp extends database
 {
@@ -102,8 +106,14 @@ class signInUp extends database
                     }
                 }
             }
+
+            $username = $_SESSION['name'];
+
+            $sqlUser = "INSERT INTO `last_update` (`update_id`, `username`, `code`, `updated_at`) VALUES (NULL, '$username', '$code', CURRENT_TIMESTAMP)";
+            mysqli_query($this->link, $sqlUser);
+
             if ($res1 && $res4) {
-                echo "Added";
+                return "Added";
             }
         }
     }
@@ -167,6 +177,12 @@ $objSignIn = $obj->signInFunction();
                 <!-- <form action="" method="post"> -->
                 <div class="mt-5">
                     <div class="container">
+                        <?php if ($objSignIn == 'Added') { ?>
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Successfully Added!</strong>
+                        </div>
+                        <?php } ?>
                         <div id="smartwizard" class="bg-white">
 
                             <ul class="nav">
@@ -213,7 +229,7 @@ $objSignIn = $obj->signInFunction();
                                         required>
                                     <input type="text" class="form-control mt-3" placeholder="Flat" name="flat"
                                         required>
-                                    <input type="text" class="form-control mt-3" placeholder="No of Rooms"
+                                    <input type="number" class="form-control mt-3" placeholder="No of Rooms"
                                         name="no_rooms" id="no_rooms" required>
                                     <input type="text" class="form-control mt-3" placeholder="Entry Password"
                                         name="entry_password" required>
@@ -368,11 +384,11 @@ $objSignIn = $obj->signInFunction();
 
             for (let i = 1; i <= myCode; i++) {
                 string += (`<tr id="d1"><th scope="row">${i}</th>
-                                                    <td><input type="text" class="form-control" name="gross_area[]">
+                                                    <td><input type="number" class="form-control" name="gross_area[]">
                                                     </td>
-                                                    <td><input type="text" class="form-control" name="salesable_area[]">
+                                                    <td><input type="number" class="form-control" name="salesable_area[]">
                                                     </td>
-                                                    <td><input type="text" class="form-control" name="rent[]"></td>
+                                                    <td><input type="number" class="form-control" name="rent[]"></td>
                                                     <td><select name="Cargo_Lift[]" id="" class="form-control">
                                                             <option value="Yes" selected>Yes</option>
                                                             <option value="No">No</option>

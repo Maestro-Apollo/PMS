@@ -88,6 +88,19 @@ class Property extends database
         }
         # code...
     }
+    public function lastPerson()
+    {
+        $code = $_GET['code'];
+
+        $sql = "SELECT * FROM `building_info` LEFT JOIN last_update ON building_info.code = last_update.code WHERE building_info.code = '$code'";
+        $res = mysqli_query($this->link, $sql);
+        if (mysqli_num_rows($res) > 0) {
+            return $res;
+        } else {
+            return false;
+        }
+        # code...
+    }
 }
 $obj = new Property;
 $objInfo = $obj->showInfo();
@@ -96,10 +109,12 @@ $objFacilties = $obj->showFacilties();
 $objLandlord = $obj->showLandlord_details();
 $objPhotos = $obj->showPhotos();
 $objRoom = $obj->showPhotosRoom();
+$objPerson = $obj->lastPerson();
 
 $rowInfo = mysqli_fetch_assoc($objInfo);
 $rowTypes = mysqli_fetch_assoc($objTypes);
 $rowLandLord = mysqli_fetch_assoc($objLandlord);
+$rowPerson = mysqli_fetch_assoc($objPerson);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -172,10 +187,10 @@ $rowLandLord = mysqli_fetch_assoc($objLandlord);
                             <h5 class="font-weight-bold">Number of room(s): <span
                                     class="text-secondary"><?php echo $rowInfo['no_room']; ?></span></h5>
                         </div>
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                             <h5 class="font-weight-bold">Password: <span
                                     class="text-secondary"><?php echo $rowInfo['enter_password']; ?></span></h5>
-                        </div>
+                        </div> -->
                     </div>
 
                     <h4 class="font-weight-bold mt-3">Landlord Info</h4>
@@ -216,7 +231,12 @@ $rowLandLord = mysqli_fetch_assoc($objLandlord);
                         </div>
 
                     </div>
-                    <h4 class="font-weight-bold mt-3">Facilties</h4>
+                    <h4 class="font-weight-bold mt-3">Last Seen By</h4>
+                    <div class="divider mb-2"></div>
+                    <h5 class="font-weight-bold">Username: <span
+                            class="text-secondary"><?php echo $rowPerson['username']; ?>
+                            (<?php echo date("d-m-Y", strtotime($rowPerson['updated_at'])); ?>)</span></h5>
+                    <h4 class="font-weight-bold mt-4">Facilities</h4>
                     <div class="divider mb-3"></div>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <?php if ($objFacilties) { ?>

@@ -11,6 +11,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
 
+                    <?php if (isset($_SESSION['name'])) { ?>
+
                     <li class="nav-item p-1">
                         <a class="nav-link text-white font-weight-bold" href="./property-details.php">Add Property</a>
                     </li>
@@ -20,15 +22,16 @@
                     <li class="nav-item p-1">
                         <a class="nav-link text-white font-weight-bold" href="./search-page.php">Property Search</a>
                     </li>
-                    <!-- <li class="nav-item p-1">
-                        <a class="nav-link text-white font-weight-bold" href="./password-reset.php">Reset Password</a>
+                    <li class="nav-item p-1">
+                        <a class="nav-link text-white font-weight-bold" href="./search-landlord.php">LandLord
+                            Enterance</a>
                     </li>
 
                     <li class="nav-item p-1">
                         <a class="nav-link text-white font-weight-bold" href="logout.php">Logout</a>
-                    </li> -->
+                    </li>
 
-
+                    <?php } ?>
 
 
 

@@ -19,7 +19,7 @@ class signInUp extends database
 
                 if (password_verify($password, $pass) == true) {
                     $_SESSION['name'] = $agent_name;
-                    header('location:booking.php');
+                    header('location:property-details.php');
                     return $res;
                 } else {
                     $msg = "Wrong password";
