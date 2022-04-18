@@ -24,8 +24,9 @@ class signInUp extends database
             $customer_lift = addslashes(trim($_POST['customer_lift']));
             $tf_hr = addslashes(trim($_POST['tf_hr']));
             $entry_password = addslashes(trim($_POST['entry_password']));
+            $display = addslashes(trim($_POST['display']));
 
-            $sql1 = "INSERT INTO `building_info` (`building_id`, `code`, `district`, `street`, `building`, `floor`, `flat`, `no_room`, `enter_password`, `building_created_at`,`block`,`cargo_lift`,`customer_lift`,`tf_hr`) VALUES (NULL, '$code', '$district', '$street', '$building', '$floor', '$flat', '$no_rooms', '$entry_password', CURRENT_TIMESTAMP,'$block','$cargo_lift','$customer_lift','$tf_hr')";
+            $sql1 = "INSERT INTO `building_info` (`building_id`, `code`, `district`, `street`, `building`, `floor`, `flat`, `no_room`, `enter_password`, `building_created_at`, `block`, `cargo_lift`, `customer_lift`, `tf_hr`, `display_by`) VALUES (NULL, '$code', '$district', '$street', '$building', '$floor', '$flat', '$no_rooms', '$entry_password', CURRENT_TIMESTAMP, '$block', '$cargo_lift', '$customer_lift', '$tf_hr', '$display')";
 
             $res1 = mysqli_query($this->link, $sql1);
             $add = 1;
@@ -123,6 +124,7 @@ class signInUp extends database
 $obj = new signInUp;
 $objSignIn = $obj->signInFunction();
 
+header('Content-Type: text/html; charset=utf-8');
 
 
 
@@ -131,7 +133,7 @@ $objSignIn = $obj->signInFunction();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <?php include('layout/style.php'); ?>
@@ -278,9 +280,10 @@ $objSignIn = $obj->signInFunction();
                                                 name="customer_lift">
                                         </div>
                                         <div class="col-6 offset-3">
-                                            <select id="" name="tf_hr" class="form-control mt-3">
-                                                <option selected disabled>24 Hours</option>
-                                                <option value="Yes">Yes</option>
+                                            <label for="" class="mt-3 text-center d-block">24 hour</label>
+                                            <select id="" name="tf_hr" class="form-control">
+
+                                                <option value="Yes" selected>Yes</option>
                                                 <option value="No">No</option>
                                             </select>
 

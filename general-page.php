@@ -1,6 +1,11 @@
 <?php
-require './class/database.php';
 session_start();
+if (isset($_SESSION['name'])) {
+} else {
+    header('location:login.php');
+}
+require './class/database.php';
+
 class Property extends database
 {
     public function showInfo()
@@ -101,6 +106,20 @@ class Property extends database
         }
         # code...
     }
+    public function displayRoom($room)
+    {
+        $code = $_GET['code'];
+        $sql = "SELECT * from building_info where code = '$code' AND display_by = 'alp'";
+        $res = mysqli_query($this->link, $sql);
+        if (mysqli_num_rows($res) > 0) {
+            $alphabet = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+            return $alphabet[$room - 1];
+        } else {
+            return $room;
+        }
+
+        # code...
+    }
 }
 $obj = new Property;
 $objInfo = $obj->showInfo();
@@ -187,6 +206,18 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                             <h5 class="font-weight-bold">Number of room(s): <span
                                     class="text-secondary"><?php echo $rowInfo['no_room']; ?></span></h5>
                         </div>
+                        <div class="col-6">
+                            <h5 class="font-weight-bold">Cargo Lift: <span
+                                    class="text-secondary"><?php echo $rowInfo['cargo_lift']; ?></span></h5>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="font-weight-bold">Customer Lift: <span
+                                    class="text-secondary"><?php echo $rowInfo['customer_lift']; ?></span></h5>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="font-weight-bold">24 hour: <span
+                                    class="text-secondary"><?php echo $rowInfo['tf_hr']; ?></span></h5>
+                        </div>
                         <!-- <div class="col-6">
                             <h5 class="font-weight-bold">Password: <span
                                     class="text-secondary"><?php echo $rowInfo['enter_password']; ?></span></h5>
@@ -246,7 +277,7 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                             <a class="nav-link font-weight-bold" id="home-tab<?php echo $row['room_number']; ?>"
                                 data-toggle="tab" href="#home<?php echo $row['room_number']; ?>" role="tab"
                                 aria-controls="home<?php echo $row['room_number']; ?>" aria-selected="true">Room
-                                <?php echo $row['room_number']; ?></a>
+                                <?php echo $obj->displayRoom($row['room_number']); ?></a>
                         </li>
 
 
@@ -266,10 +297,7 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                                 <p class="col-4 font-weight-bold">Saleable Area: <?php echo $row['salesable_area']; ?>
                                 </p>
                                 <p class="col-4 font-weight-bold">Rent: <?php echo $row['rent']; ?></p>
-                                <p class="col-4 font-weight-bold">Cargo lift: <?php echo $row['cargo_lift']; ?></p>
-                                <p class="col-4 font-weight-bold">Customer lift: <?php echo $row['customer_lift']; ?>
-                                </p>
-                                <p class="col-4 font-weight-bold">24 Hours: <?php echo $row['tf_hours']; ?></p>
+
                                 <p class="col-4 font-weight-bold">Windows: <?php echo $row['windows']; ?></p>
                                 <p class="col-4 font-weight-bold">Lavatory: <?php echo $row['lavatory']; ?></p>
                                 <p class="col-4 font-weight-bold">Shower: <?php echo $row['shower']; ?></p>
@@ -297,7 +325,7 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                             <a class="nav-link font-weight-bold" id="photo-tab<?php echo $row['room_number']; ?>"
                                 data-toggle="tab" href="#photo<?php echo $row['room_number']; ?>" role="tab"
                                 aria-controls="photo<?php echo $row['room_number']; ?>" aria-selected="true">Room
-                                <?php echo $row['room_number']; ?></a>
+                                <?php echo $obj->displayRoom($row['room_number']); ?></a>
                         </li>
 
 
