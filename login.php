@@ -16,8 +16,8 @@ class signInUp extends database
             if (mysqli_num_rows($res) > 0) {
                 $row = mysqli_fetch_assoc($res);
                 $pass = $row['password'];
-                $cookie_username = "cookie_username";
-                $cookie_password = "cookie_password";
+                $cookie_username = "cookie_username_1";
+                $cookie_password = "cookie_password_1";
                 if (password_verify($password, $pass) == true) {
 
                     $_SESSION['name'] = $agent_name;
@@ -46,8 +46,8 @@ class signInUp extends database
                 if (mysqli_num_rows($res) > 0) {
                     $row = mysqli_fetch_assoc($res);
                     $pass = $row['password'];
-                    $cookie_username = "cookie_username";
-                    $cookie_password = "cookie_password";
+                    $cookie_username = "cookie_username_1";
+                    $cookie_password = "cookie_password_1";
                     if (password_verify($password, $pass) == true) {
                         $_SESSION['admin'] = $agent_name;
                         if (!empty($_POST['remember'])) {

@@ -53,21 +53,38 @@ class signInUp extends database
                 mysqli_query($this->link, $sql2);
             }
 
-            for ($j = 0; $j < count($_POST['Individual']); $j++) {
-                $Individual = $_POST['Individual'][$j];
-                $Seprate = $_POST['Seprate'][$j];
-                $Studio = $_POST['Studio'][$j];
-                $Yoga = $_POST['Yoga'][$j];
-                $Class = $_POST['Class'][$j];
-                $Overnight = $_POST['Overnight'][$j];
-                $Warehouse_office = $_POST['Warehouse_office'][$j];
-                $Beauty = $_POST['Beauty'][$j];
-                $Upstair_shop = $_POST['Upstair_shop'][$j];
-                $Upstair_shop = $_POST['Upstair_shop'][$j];
-                $Band = $_POST['Band'][$j];
-                $Recording_room = $_POST['Recording_room'][$j];
-                $piano = $_POST['piano'][$j];
-                $Painting = $_POST['Painting'][$j];
+            for ($j = 0; $j < count($_POST['keyNumber']); $j++) {
+                $Individual = (isset($_POST['Individual'][$j]) ? $_POST['Individual'][$j] : 'No');
+                $Seprate = (isset($_POST['Seprate'][$j]) ? $_POST['Seprate'][$j] : 'No');
+                $Studio = (isset($_POST['Studio'][$j]) ? $_POST['Studio'][$j] : 'No');
+                $Yoga = (isset($_POST['Yoga'][$j]) ? $_POST['Yoga'][$j] : 'No');
+                $Class = (isset($_POST['Class'][$j]) ? $_POST['Class'][$j] : 'No');
+                $Overnight = (isset($_POST['Overnight'][$j]) ? $_POST['Overnight'][$j] : 'No');
+                $Warehouse_office = (isset($_POST['Warehouse_office'][$j]) ? $_POST['Warehouse_office'][$j] : 'No');
+                $Beauty = (isset($_POST['Beauty'][$j]) ? $_POST['Beauty'][$j] : 'No');
+                $Upstair_shop = (isset($_POST['Upstair_shop'][$j]) ? $_POST['Upstair_shop'][$j] : 'No');
+                $Band = (isset($_POST['Band'][$j]) ? $_POST['Band'][$j] : 'No');
+                $Recording_room = (isset($_POST['Recording_room'][$j]) ? $_POST['Recording_room'][$j] : 'No');
+                $piano = (isset($_POST['piano'][$j]) ? $_POST['piano'][$j] : 'No');
+                $Painting = (isset($_POST['Painting'][$j]) ? $_POST['Painting'][$j] : 'No');
+
+
+
+
+
+
+                // $Seprate = $_POST['Seprate'][$j];
+                // $Studio = $_POST['Studio'][$j];
+                // $Yoga = $_POST['Yoga'][$j];
+                // $Class = $_POST['Class'][$j];
+                // $Overnight = $_POST['Overnight'][$j];
+                // $Warehouse_office = $_POST['Warehouse_office'][$j];
+                // $Beauty = $_POST['Beauty'][$j];
+                // $Upstair_shop = $_POST['Upstair_shop'][$j];
+                // $Band = $_POST['Band'][$j];
+                // $Recording_room = $_POST['Recording_room'][$j];
+                // $piano = $_POST['piano'][$j];
+                // $Painting = $_POST['Painting'][$j];
                 $Remarks2 = addslashes(trim($_POST['Remarks'][$j]));
                 $room_no = $j + 1;
 
@@ -333,19 +350,38 @@ header('Content-Type: text/html; charset=utf-8');
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col">Room No</th>
-                                                    <th scope="col">Individual</th>
-                                                    <th scope="col">Seprate</th>
-                                                    <th scope="col">Studio</th>
-                                                    <th scope="col">Yoga</th>
-                                                    <th scope="col">Class</th>
-                                                    <th scope="col">Overnight</th>
-                                                    <th scope="col">Warehouse & office</th>
-                                                    <th scope="col">Beauty</th>
-                                                    <th scope="col">Upstair shop</th>
-                                                    <th scope="col">Band</th>
-                                                    <th scope="col">Recording room</th>
-                                                    <th scope="col">1 to 1 piano</th>
-                                                    <th scope="col">Painting</th>
+                                                    <th scope="col"><label for="ckbCheckAll1">Individual</label> <input
+                                                            id="ckbCheckAll1" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll2">Seprate</label> <input
+                                                            id="ckbCheckAll2" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll3">Studio</label> <input
+                                                            id="ckbCheckAll3" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll4">Yoga</label> <input
+                                                            id="ckbCheckAll4" type="checkbox"></th>
+                                                    <th scope="col"><label for="ckbCheckAll5">Class</label> <input
+                                                            id="ckbCheckAll5" type="checkbox"></th>
+                                                    <th scope="col"><label for="ckbCheckAll6">Overnight</label> <input
+                                                            id="ckbCheckAll6" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll7">Warehouse & office</label>
+                                                        <input id="ckbCheckAll7" type="checkbox"></th>
+                                                    <th scope="col"><label for="ckbCheckAll8">Beauty</label> <input
+                                                            id="ckbCheckAll8" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll9">Upstair shop </label>
+                                                        <input id="ckbCheckAll9" type="checkbox"></th>
+                                                    <th scope="col"><label for="ckbCheckAll10">Band</label> <input
+                                                            id="ckbCheckAll10" type="checkbox"></th>
+                                                    <th scope="col"><label for="ckbCheckAll11">Recording room</label>
+                                                        <input id="ckbCheckAll11" type="checkbox"></th>
+                                                    <th scope="col"><label for="ckbCheckAll12">1 to 1 piano </label>
+                                                        <input id="ckbCheckAll12" type="checkbox"></th>
+                                                    <th scope="col"><label for="ckbCheckAll13">Painting</label> <input
+                                                            id="ckbCheckAll13" type="checkbox">
+                                                    </th>
                                                     <th scope="col">Remarks</th>
                                                 </tr>
                                             </thead>
@@ -487,62 +523,23 @@ header('Content-Type: text/html; charset=utf-8');
 
                 string2 += (`<tr>
                                                     <th scope="row">${i}</th>
-
-                                                    <td><select name="Individual[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Seprate[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
+<input type="hidden" value="Yes" name="keyNumber[]" />
+                                                    <td><input type="checkbox" class="checkBoxClass1" value="Yes" name="Individual[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass2" value="Yes" name="Seprate[]" /> Yes
                                                     </td>
-                                                    <td><select name="Studio[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Yoga[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Class[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Overnight[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Warehouse_office[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Beauty[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Upstair_shop[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Band[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
+                                                    <td><input type="checkbox" class="checkBoxClass3" value="Yes" name="Studio[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass4" value="Yes" name="Yoga[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass5" value="Yes" name="Class[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass6" value="Yes" name="Overnight[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass7" value="Yes" name="Warehouse_office[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass8" value="Yes" name="Beauty[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass9" value="Yes" name="Upstair_shop[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass10" value="Yes" name="Band[]" /> Yes
                                                     </td>
-                                                    <td><select name="Recording_room[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
+                                                    <td><input type="checkbox" class="checkBoxClass11" value="Yes" name="Recording_room[]" /> Yes
                                                     </td>
-                                                    <td><select name="piano[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Painting[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
+                                                    <td><input type="checkbox" class="checkBoxClass12" value="Yes" name="piano[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass13" value="Yes" name="Painting[]" /> Yes</td>
                                                     <td><input type="text" class="form-control" name="Remarks[]"></td>
                                                 </tr>`);
 
@@ -560,6 +557,18 @@ header('Content-Type: text/html; charset=utf-8');
 
     });
     </script>
+
+    <script>
+    $(document).ready(function() {
+        for (let i = 1; i <= 13; i++) {
+            $('#ckbCheckAll' + i).click(function() {
+                $('.checkBoxClass' + i).prop('checked', $(this).prop('checked'));
+            });
+        }
+
+    });
+    </script>
+
     <script type="text/javascript">
     $(document).ready(function() {
 
