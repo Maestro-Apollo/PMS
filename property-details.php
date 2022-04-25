@@ -37,17 +37,27 @@ class signInUp extends database
                     $salesable_area = $_POST['salesable_area'][$i];
                     $rent = $_POST['rent'][$i];
 
-                    $Windows = $_POST['Windows'][$i];
-                    $Lavatory = $_POST['Lavatory'][$i];
-                    $Shower = $_POST['Shower'][$i];
-                    $Sink = $_POST['Sink'][$i];
-                    $Wide_door = $_POST['Wide_door'][$i];
-                    $Brickes_wall = $_POST['Brickes_wall'][$i];
-                    $Seprate_room = $_POST['Seprate_room'][$i];
-                    $Electronic_keys = $_POST['Electronic_keys'][$i];
-                    $Wifi = $_POST['Wifi'][$i];
+                    $Windows = (isset($_POST['Windows'][$i]) ? $_POST['Windows'][$i] : 'No');
+                    $Lavatory = (isset($_POST['Lavatory'][$i]) ? $_POST['Lavatory'][$i] : 'No');
+                    $Shower = (isset($_POST['Shower'][$i]) ? $_POST['Shower'][$i] : 'No');
+                    $Sink = (isset($_POST['Sink'][$i]) ? $_POST['Sink'][$i] : 'No');
+                    $Wide_door = (isset($_POST['Wide_door'][$i]) ? $_POST['Wide_door'][$i] : 'No');
+                    $Brickes_wall = (isset($_POST['Brickes_wall'][$i]) ? $_POST['Brickes_wall'][$i] : 'No');
+                    $Seprate_room = (isset($_POST['Seprate_room'][$i]) ? $_POST['Seprate_room'][$i] : 'No');
+                    $Electronic_keys = (isset($_POST['Electronic_keys'][$i]) ? $_POST['Electronic_keys'][$i] : 'No');
+                    $Wifi = (isset($_POST['Wifi'][$i]) ? $_POST['Wifi'][$i] : 'No');
+
+                    // $Windows = $_POST['Windows'][$i];
+                    // $Lavatory = $_POST['Lavatory'][$i];
+                    // $Shower = $_POST['Shower'][$i];
+                    // $Sink = $_POST['Sink'][$i];
+                    // $Wide_door = $_POST['Wide_door'][$i];
+                    // $Brickes_wall = $_POST['Brickes_wall'][$i];
+                    // $Seprate_room = $_POST['Seprate_room'][$i];
+                    // $Electronic_keys = $_POST['Electronic_keys'][$i];
+                    // $Wifi = $_POST['Wifi'][$i];
                     $Remarks = addslashes(trim($_POST['Remarks'][$i]));
-                    $room_num = count($_POST['gross_area']) - $i;
+                    $room_num = $i + 1;
 
                     $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`,  `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
 
@@ -89,7 +99,7 @@ class signInUp extends database
                 // $Painting = $_POST['Painting'][$j];
                 $Remarks2 = addslashes(trim($_POST['Remarks'][$j]));
 
-                $room_no = count($_POST['gross_area']) - $j;
+                $room_no = $j + 1;
 
 
                 $sql3 = "INSERT INTO `types` (`types_id`, `individual`, `seprate`, `studio`, `yoga`, `class`, `overnight`, `warehouse_office`, `beauty`, `upstair_shop`, `band`, `recording_room`, `piano`, `painting`, `remarks`, `code`, `types_created_at`,`types_room_no`) VALUES (NULL, '$Individual', '$Seprate', '$Studio', '$Yoga', '$Class', '$Overnight', '$Warehouse_office', '$Beauty', '$Upstair_shop', '$Band', '$Recording_room', '$piano', '$Painting', '$Remarks2', '$code', CURRENT_TIMESTAMP,'$room_no')";
@@ -337,32 +347,32 @@ $code = $rand;
                                                     <th scope="col">Salesable Area</th>
                                                     <th scope="col">Rent - 租</th>
 
-                                                    <th scope="col"><label for="ckbCheckAll12">Windows </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP1">Windows </label>
+                                                        <input id="ckbCheckAllP1" type="checkbox">
                                                     </th>
-                                                    <th scope="col"><label for="ckbCheckAll12">Lavatory </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP2">Lavatory </label>
+                                                        <input id="ckbCheckAllP2" type="checkbox">
                                                     </th>
-                                                    <th scope="col"><label for="ckbCheckAll12">Shower 淋浴 </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP3">Shower 淋浴 </label>
+                                                        <input id="ckbCheckAllP3" type="checkbox">
                                                     </th>
-                                                    <th scope="col"><label for="ckbCheckAll12">Sink 下沉 </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP4">Sink 下沉 </label>
+                                                        <input id="ckbCheckAllP4" type="checkbox">
                                                     </th>
-                                                    <th scope="col"><label for="ckbCheckAll12">Wide door </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP5">Wide door </label>
+                                                        <input id="ckbCheckAllP5" type="checkbox">
                                                     </th>
-                                                    <th scope="col"><label for="ckbCheckAll12">Bricked wall </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP6">Bricked wall </label>
+                                                        <input id="ckbCheckAllP6" type="checkbox">
                                                     </th>
-                                                    <th scope="col"><label for="ckbCheckAll12">Seprate room </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP7">Seprate room </label>
+                                                        <input id="ckbCheckAllP7" type="checkbox">
                                                     </th>
-                                                    <th scope="col"><label for="ckbCheckAll12">Electronic keys </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP8">Electronic keys </label>
+                                                        <input id="ckbCheckAllP8" type="checkbox">
                                                     </th>
-                                                    <th scope="col"><label for="ckbCheckAll12">Wifi 无线上网 </label>
-                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    <th scope="col"><label for="ckbCheckAllP9">Wifi 无线上网 </label>
+                                                        <input id="ckbCheckAllP9" type="checkbox">
                                                     </th>
                                                     <th scope="col">Remarks</th>
                                                 </tr>
@@ -517,44 +527,17 @@ $code = $rand;
                                                     <td><input type="number" class="form-control" name="salesable_area[]">
                                                     </td>
                                                     <td><input type="number" class="form-control" name="rent[]"></td>
-                                                    <td><select name="Windows[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Lavatory[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Shower[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Sink[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Wide_door[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Brickes_wall[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
-                                                    <td><select name="Seprate_room[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
+                                                    <td><input type="checkbox" class="checkBoxClassP1" value="Yes" name="Windows[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP2" value="Yes" name="Lavatory[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP3" value="Yes" name="Shower[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP4" value="Yes" name="Sink[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP5" value="Yes" name="Wide_door[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP6" value="Yes" name="Brickes_wall[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP7" value="Yes" name="Seprate_room[]" /> Yes
                                                     </td>
-                                                    <td><select name="Electronic_keys[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
+                                                    <td><input type="checkbox" class="checkBoxClassP8" value="Yes" name="Electronic_keys[]" /> Yes
                                                     </td>
-                                                    <td><select name="Wifi[]" id="" class="form-control">
-                                                            <option value="Yes" selected>Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select></td>
+                                                    <td><input type="checkbox" class="checkBoxClassP9" value="Yes" name="Wifi[]" /> Yes</td>
                                                     <td><input type="text" class="form-control" name="Remarks[]"></td>
                                                 </tr>`);
 
@@ -600,6 +583,14 @@ $code = $rand;
         for (let i = 1; i <= 13; i++) {
             $('#ckbCheckAll' + i).click(function() {
                 $('.checkBoxClass' + i).prop('checked', $(this).prop('checked'));
+            });
+        }
+
+    });
+    $(document).ready(function() {
+        for (let i = 1; i <= 9; i++) {
+            $('#ckbCheckAllP' + i).click(function() {
+                $('.checkBoxClassP' + i).prop('checked', $(this).prop('checked'));
             });
         }
 
