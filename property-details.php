@@ -31,26 +31,28 @@ class signInUp extends database
             $res1 = mysqli_query($this->link, $sql1);
             $add = 1;
 
-            for ($i = 0; $i < count($_POST['gross_area']); $i++) {
-                $gross_area = $_POST['gross_area'][$i];
-                $salesable_area = $_POST['salesable_area'][$i];
-                $rent = $_POST['rent'][$i];
+            if (isset($_POST['gross_area'])) {
+                for ($i = 0; $i < count($_POST['gross_area']); $i++) {
+                    $gross_area = $_POST['gross_area'][$i];
+                    $salesable_area = $_POST['salesable_area'][$i];
+                    $rent = $_POST['rent'][$i];
 
-                $Windows = $_POST['Windows'][$i];
-                $Lavatory = $_POST['Lavatory'][$i];
-                $Shower = $_POST['Shower'][$i];
-                $Sink = $_POST['Sink'][$i];
-                $Wide_door = $_POST['Wide_door'][$i];
-                $Brickes_wall = $_POST['Brickes_wall'][$i];
-                $Seprate_room = $_POST['Seprate_room'][$i];
-                $Electronic_keys = $_POST['Electronic_keys'][$i];
-                $Wifi = $_POST['Wifi'][$i];
-                $Remarks = addslashes(trim($_POST['Remarks'][$i]));
-                $room_num = $i + 1;
+                    $Windows = $_POST['Windows'][$i];
+                    $Lavatory = $_POST['Lavatory'][$i];
+                    $Shower = $_POST['Shower'][$i];
+                    $Sink = $_POST['Sink'][$i];
+                    $Wide_door = $_POST['Wide_door'][$i];
+                    $Brickes_wall = $_POST['Brickes_wall'][$i];
+                    $Seprate_room = $_POST['Seprate_room'][$i];
+                    $Electronic_keys = $_POST['Electronic_keys'][$i];
+                    $Wifi = $_POST['Wifi'][$i];
+                    $Remarks = addslashes(trim($_POST['Remarks'][$i]));
+                    $room_num = count($_POST['gross_area']) - $i;
 
-                $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`,  `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
+                    $sql2 = "INSERT INTO `facilties` (`facilties_id`, `gross_area`, `salesable_area`, `rent`,  `windows`, `lavatory`, `shower`, `sink`, `wide_door`, `brickes_wall`, `seprate_room`, `electronic_keys`, `wifi`, `remarks`, `room_number`, `facilties_created_at`, `code`) VALUES (NULL, '$gross_area', '$salesable_area', '$rent', '$Windows', '$Lavatory', '$Shower', '$Sink', '$Wide_door', '$Brickes_wall', '$Seprate_room', '$Electronic_keys', '$Wifi', '$Remarks', '$room_num', CURRENT_TIMESTAMP, '$code')";
 
-                mysqli_query($this->link, $sql2);
+                    mysqli_query($this->link, $sql2);
+                }
             }
 
             for ($j = 0; $j < count($_POST['keyNumber']); $j++) {
@@ -86,7 +88,8 @@ class signInUp extends database
                 // $piano = $_POST['piano'][$j];
                 // $Painting = $_POST['Painting'][$j];
                 $Remarks2 = addslashes(trim($_POST['Remarks'][$j]));
-                $room_no = $j + 1;
+
+                $room_no = count($_POST['gross_area']) - $j;
 
 
                 $sql3 = "INSERT INTO `types` (`types_id`, `individual`, `seprate`, `studio`, `yoga`, `class`, `overnight`, `warehouse_office`, `beauty`, `upstair_shop`, `band`, `recording_room`, `piano`, `painting`, `remarks`, `code`, `types_created_at`,`types_room_no`) VALUES (NULL, '$Individual', '$Seprate', '$Studio', '$Yoga', '$Class', '$Overnight', '$Warehouse_office', '$Beauty', '$Upstair_shop', '$Band', '$Recording_room', '$piano', '$Painting', '$Remarks2', '$code', CURRENT_TIMESTAMP,'$room_no')";
@@ -107,11 +110,16 @@ class signInUp extends database
 
             $res4 = mysqli_query($this->link, $sql4);
 
-            for ($ir = 0; $ir < count($_POST['Individual']); $ir++) {
+            for ($ir = 0; $ir < count($_POST['keyNumber']); $ir++) {
 
-                $room_number = $ir + 1;
+                $room_number = count($_POST['gross_area']) - $ir;
                 $szFiles = sizeof($_FILES['item']['name']['image' . $room_number]);
 
+                if ($szFiles === 1) {
+                    $sqlFile = "INSERT INTO `photos` (`image_id`, `image`, `room_number`, `code`, `image_created_at`) VALUES (NULL, '', '$room_number', '$code', CURRENT_TIMESTAMP)";
+                    mysqli_query($this->link, $sqlFile);
+                    break;
+                }
 
                 for ($second = 0; $second < $szFiles; $second++) {
                     if ($_FILES['item']['name']['image' . $room_number][$second] != '') {
@@ -143,7 +151,13 @@ $objSignIn = $obj->signInFunction();
 
 header('Content-Type: text/html; charset=utf-8');
 
+$seed = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    . '0123456789'); // and any other characters
+shuffle($seed); // probably optional since array_is randomized; this may be redundant
+$rand = '';
+foreach (array_rand($seed, 6) as $k) $rand .= $seed[$k];
 
+$code = $rand;
 
 ?>
 <!DOCTYPE html>
@@ -240,8 +254,8 @@ header('Content-Type: text/html; charset=utf-8');
                                     <h3>Building Info</h3>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="text" class="form-control mt-3" placeholder="Code" name="code"
-                                                required>
+                                            <input type="text" class="form-control mt-3" value="<?php echo $code; ?>"
+                                                placeholder="Code" name="code" required>
                                         </div>
                                         <div class="col-6">
                                             <input type="text" class="form-control mt-3" placeholder="District"
@@ -252,20 +266,21 @@ header('Content-Type: text/html; charset=utf-8');
 
                                     <input type="text" class="form-control mt-3" placeholder="Street" name="street">
                                     <input type="text" class="form-control mt-3" placeholder="Building" name="building"
-                                        required>
+                                        required autocomplete="on">
                                     <div class="row">
                                         <div class="col-6">
                                             <input type="text" class="form-control mt-3" placeholder="Block"
-                                                name="block">
+                                                name="block" autocomplete="on">
                                         </div>
                                         <div class="col-6">
                                             <input type="text" class="form-control mt-3" placeholder="Floor"
-                                                name="floor">
+                                                name="floor" autocomplete="on">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="text" class="form-control mt-3" placeholder="Flat" name="flat">
+                                            <input type="text" class="form-control mt-3" placeholder="Flat" name="flat"
+                                                autocomplete="on">
                                         </div>
                                         <div class="col-6">
                                             <input type="number" class="form-control mt-3" placeholder="No of Rooms"
@@ -322,15 +337,33 @@ header('Content-Type: text/html; charset=utf-8');
                                                     <th scope="col">Salesable Area</th>
                                                     <th scope="col">Rent - 租</th>
 
-                                                    <th scope="col">Windows</th>
-                                                    <th scope="col">Lavatory</th>
-                                                    <th scope="col">Shower 淋浴</th>
-                                                    <th scope="col">Sink 下沉</th>
-                                                    <th scope="col">Wide door</th>
-                                                    <th scope="col">Brickes wall</th>
-                                                    <th scope="col">Seprate room</th>
-                                                    <th scope="col">Electronic keys</th>
-                                                    <th scope="col">Wifi 无线上网</th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Windows </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Lavatory </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Shower 淋浴 </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Sink 下沉 </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Wide door </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Bricked wall </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Seprate room </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Electronic keys </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
+                                                    <th scope="col"><label for="ckbCheckAll12">Wifi 无线上网 </label>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
                                                     <th scope="col">Remarks</th>
                                                 </tr>
                                             </thead>
@@ -367,18 +400,22 @@ header('Content-Type: text/html; charset=utf-8');
                                                             id="ckbCheckAll6" type="checkbox">
                                                     </th>
                                                     <th scope="col"><label for="ckbCheckAll7">Warehouse & office</label>
-                                                        <input id="ckbCheckAll7" type="checkbox"></th>
+                                                        <input id="ckbCheckAll7" type="checkbox">
+                                                    </th>
                                                     <th scope="col"><label for="ckbCheckAll8">Beauty</label> <input
                                                             id="ckbCheckAll8" type="checkbox">
                                                     </th>
                                                     <th scope="col"><label for="ckbCheckAll9">Upstair shop </label>
-                                                        <input id="ckbCheckAll9" type="checkbox"></th>
+                                                        <input id="ckbCheckAll9" type="checkbox">
+                                                    </th>
                                                     <th scope="col"><label for="ckbCheckAll10">Band</label> <input
                                                             id="ckbCheckAll10" type="checkbox"></th>
                                                     <th scope="col"><label for="ckbCheckAll11">Recording room</label>
-                                                        <input id="ckbCheckAll11" type="checkbox"></th>
+                                                        <input id="ckbCheckAll11" type="checkbox">
+                                                    </th>
                                                     <th scope="col"><label for="ckbCheckAll12">1 to 1 piano </label>
-                                                        <input id="ckbCheckAll12" type="checkbox"></th>
+                                                        <input id="ckbCheckAll12" type="checkbox">
+                                                    </th>
                                                     <th scope="col"><label for="ckbCheckAll13">Painting</label> <input
                                                             id="ckbCheckAll13" type="checkbox">
                                                     </th>

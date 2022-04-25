@@ -218,6 +218,10 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                             <h5 class="font-weight-bold">24 hour: <span
                                     class="text-secondary"><?php echo $rowInfo['tf_hr']; ?></span></h5>
                         </div>
+                        <div class="col-6">
+                            <h5 class="font-weight-bold">Entry Password: <span
+                                    class="text-secondary"><?php echo $rowInfo['enter_password']; ?></span></h5>
+                        </div>
                         <!-- <div class="col-6">
                             <h5 class="font-weight-bold">Password: <span
                                     class="text-secondary"><?php echo $rowInfo['enter_password']; ?></span></h5>
@@ -230,6 +234,10 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                         <div class="col-6">
                             <h5 class="font-weight-bold">Person in charge: <span
                                     class="text-secondary"><?php echo $rowLandLord['in_charges']; ?></span></h5>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="font-weight-bold">LandLord Name: <span
+                                    class="text-secondary"><?php echo $rowLandLord['landlord_name']; ?></span></h5>
                         </div>
 
                         <div class="col-6">
