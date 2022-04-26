@@ -178,9 +178,13 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
 
                 <!-- <form action="" method="post"> -->
                 <div class="col-12">
-                    <h4 class="font-weight-bold ">Code: <span
-                            class="text-secondary"><?php echo $rowInfo['code']; ?></span></h4>
-                    <div class="divider mb-5"></div>
+                    <div class="d-flex">
+                        <h4 class="font-weight-bold ">Code: <span
+                                class="text-secondary"><?php echo $rowInfo['code']; ?></span></h4>
+                        <a href="edit-general-page.php?code=<?php echo $_GET['code']; ?>"
+                            class="btn log_btn float-right ml-5">Edit</a>
+                    </div>
+                    <div class="divider mb-5 mt-3"></div>
 
                     <h4 class="font-weight-bold">Building Info: <span
                             class="text-secondary"><?php echo $rowInfo['building']; ?></span></h4>
