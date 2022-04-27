@@ -43,6 +43,18 @@ class ShowData extends database
         }
         # code...
     }
+    public function showLandlord()
+    {
+        $code = $_GET['code'];
+        $sql = "SELECT * from types where code = '$code' ";
+        $res = mysqli_query($this->link, $sql);
+        if (mysqli_num_rows($res) > 0) {
+            return $res;
+        } else {
+            return false;
+        }
+        # code...
+    }
 }
 $obj = new ShowData;
 $objInfo = $obj->showBuildingInfo();
@@ -224,8 +236,8 @@ header('Content-Type: text/html; charset=utf-8');
                                     </div>
                                     <input type="text" class="form-control mt-3" placeholder="Entry Password"
                                         name="entry_password" value="<?php echo $rowInfo['enter_password'] ?>">
-                                    <button type="submit" name="submit"
-                                        class="btn btn-block font-weight-bold log_btn btn-lg mt-4">SUBMIT</button>
+                                    <!-- <button type="submit" name="submit"
+                                        class="btn btn-block font-weight-bold log_btn btn-lg mt-4">SUBMIT</button> -->
                                 </div>
                                 <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
                                     <h3>Facilities</h3>
@@ -455,7 +467,7 @@ header('Content-Type: text/html; charset=utf-8');
                                     <h3>Landlord Details</h3>
 
                                     <input type="text" class="form-control mt-3" placeholder="Who is in Charge?"
-                                        name="charge">
+                                        name="charge" value="<?php ?>">
                                     <input type="tel" class="form-control mt-3" placeholder="Tel 1" name="tel1">
                                     <input type="tel" class="form-control mt-3" placeholder="Tel 2" name="tel2">
                                     <input type="tel" class="form-control mt-3" placeholder="Tel 3" name="tel3">
