@@ -5,6 +5,8 @@ if (isset($_SESSION['name'])) {
     header('location:login.php');
 }
 include_once('class/database.php');
+
+include('./updateInfo.php');
 class ShowData extends database
 {
     public function showBuildingInfo()
@@ -46,7 +48,7 @@ class ShowData extends database
     public function showLandlord()
     {
         $code = $_GET['code'];
-        $sql = "SELECT * from types where code = '$code' ";
+        $sql = "SELECT * from landlord_details where code = '$code' ";
         $res = mysqli_query($this->link, $sql);
         if (mysqli_num_rows($res) > 0) {
             return $res;
@@ -60,8 +62,10 @@ $obj = new ShowData;
 $objInfo = $obj->showBuildingInfo();
 $objFacilities = $obj->showFacilities();
 $objTypes = $obj->showType();
+$objLord = $obj->showLandlord();
 
 $rowInfo = mysqli_fetch_assoc($objInfo);
+$rowLord = mysqli_fetch_assoc($objLord);
 
 
 header('Content-Type: text/html; charset=utf-8');
@@ -200,21 +204,23 @@ header('Content-Type: text/html; charset=utf-8');
                                                 value="<?php echo $rowInfo['no_room'] ?>" readonly>
                                         </div>
                                     </div>
-                                    <!-- <div class="mt-2">
+                                    <div class="mt-2">
                                         <p class="mb-0">Room Display By</p>
                                         <div class="custom-control custom-radio custom-control-inline">
                                             <input type="radio" id="customRadioInline1" name="display"
-                                                class="custom-control-input" value="alp">
+                                                class="custom-control-input" value="alp"
+                                                <?php echo (($rowInfo['display_by'] == 'alp') ? 'checked' : '') ?>>
                                             <label class="custom-control-label"
                                                 for="customRadioInline1">A,B,C,D...</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline">
                                             <input type="radio" id="customRadioInline2" name="display"
-                                                class="custom-control-input" value="num" checked>
+                                                class="custom-control-input" value="num"
+                                                <?php echo (($rowInfo['display_by'] == 'num') ? 'checked' : '') ?>>
                                             <label class="custom-control-label"
                                                 for="customRadioInline2">1,2,3,4...</label>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <div class="row">
                                         <div class="col-6">
                                             <input type="text" class="form-control mt-3" placeholder="Cargo Lift"
@@ -228,8 +234,12 @@ header('Content-Type: text/html; charset=utf-8');
                                             <label for="" class="mt-3 text-center d-block">24 hour</label>
                                             <select id="" name="tf_hr" class="form-control">
 
-                                                <option value="Yes" selected>Yes</option>
-                                                <option value="No">No</option>
+                                                <option value="Yes"
+                                                    <?php echo (($rowInfo['tf_hr'] == 'Yes') ? 'checked' : '') ?>>Yes
+                                                </option>
+                                                <option value="No"
+                                                    <?php echo (($rowInfo['tf_hr'] == 'No') ? 'checked' : '') ?>>
+                                                    No</option>
                                             </select>
 
                                         </div>
@@ -285,6 +295,8 @@ header('Content-Type: text/html; charset=utf-8');
                                                 <?php while ($row = mysqli_fetch_assoc($objFacilities)) { ?>
                                                 <tr>
                                                     <th scope="row"><?php echo $row['room_number']; ?></th>
+                                                    <input type="hidden" name="rn1"
+                                                        value="<?php echo $row['room_number'] ?>">
                                                     <td><input type="number" class="form-control" name="gross_area[]"
                                                             value="<?php echo $row['gross_area']; ?>">
                                                     </td>
@@ -295,41 +307,41 @@ header('Content-Type: text/html; charset=utf-8');
                                                     <td><input type="number" class="form-control" name="rent[]"
                                                             value="<?php echo $row['rent']; ?>"></td>
                                                     <td><input type="checkbox" class="checkBoxClassP1" value="Yes"
-                                                            name="Windows[]"
+                                                            name="Windows[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo (($row['windows'] == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClassP2" value="Yes"
-                                                            name="Lavatory[]"
+                                                            name="Lavatory[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo ((($row['lavatory']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClassP3" value="Yes"
-                                                            name="Shower[]"
+                                                            name="Shower[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo ((($row['shower']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClassP4" value="Yes"
-                                                            name="Sink[]"
+                                                            name="Sink[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo ((($row['sink']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClassP5" value="Yes"
-                                                            name="Wide_door[]"
+                                                            name="Wide_door[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo ((($row['wide_door']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClassP6" value="Yes"
-                                                            name="Brickes_wall[]"
+                                                            name="Brickes_wall[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo ((($row['brickes_wall']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClassP7" value="Yes"
-                                                            name="Seprate_room[]"
+                                                            name="Seprate_room[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo ((($row['seprate_room']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes
                                                     </td>
                                                     <td><input type="checkbox" class="checkBoxClassP8" value="Yes"
-                                                            name="Electronic_keys[]"
+                                                            name="Electronic_keys[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo ((($row['electronic_keys']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes
                                                     </td>
                                                     <td><input type="checkbox" class="checkBoxClassP9" value="Yes"
-                                                            name="Wifi[]"
+                                                            name="Wifi[<?php echo $row['room_number']; ?>][]"
                                                             <?php echo ((($row['wifi']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="text" class="form-control" name="Remarks[]"
@@ -396,6 +408,8 @@ header('Content-Type: text/html; charset=utf-8');
                                                 <?php while ($row = mysqli_fetch_assoc($objTypes)) { ?>
                                                 <tr>
                                                     <th scope="row"><?php echo $row['types_room_no']; ?></th>
+                                                    <input type="hidden" name="rn2[]"
+                                                        value="<?php echo $row['types_room_no']; ?>">
                                                     <input type="hidden" value="Yes" name="keyNumber[]" />
                                                     <td><input type="checkbox" class="checkBoxClass1" value="Yes"
                                                             name="Individual[]"
@@ -467,16 +481,21 @@ header('Content-Type: text/html; charset=utf-8');
                                     <h3>Landlord Details</h3>
 
                                     <input type="text" class="form-control mt-3" placeholder="Who is in Charge?"
-                                        name="charge" value="<?php ?>">
-                                    <input type="tel" class="form-control mt-3" placeholder="Tel 1" name="tel1">
-                                    <input type="tel" class="form-control mt-3" placeholder="Tel 2" name="tel2">
-                                    <input type="tel" class="form-control mt-3" placeholder="Tel 3" name="tel3">
+                                        name="charge" value="<?php echo $rowLord['in_charges']; ?>">
+                                    <input type="tel" class="form-control mt-3" value="<?php echo $rowLord['tel1']; ?>"
+                                        placeholder="Tel 1" name="tel1">
+                                    <input type="tel" class="form-control mt-3" placeholder="Tel 2" name="tel2"
+                                        value="<?php echo $rowLord['tel2']; ?>">
+                                    <input type="tel" class="form-control mt-3" placeholder="Tel 3" name="tel3"
+                                        value="<?php echo $rowLord['tel3']; ?>">
                                     <input type="text" class="form-control mt-3" placeholder="Landlord Name"
-                                        name="landlord_name">
-                                    <input type="text" class="form-control mt-3" placeholder="Bank" name="bank">
+                                        name="landlord_name" value="<?php echo $rowLord['landlord_name']; ?>">
+                                    <input type="text" class="form-control mt-3" placeholder="Bank" name="bank"
+                                        value="<?php echo $rowLord['bank']; ?>">
                                     <input type="text" class="form-control mt-3" placeholder="Bank account"
-                                        name="bank_account">
-                                    <input type="text" class="form-control mt-3" placeholder="Remake" name="remake">
+                                        name="bank_account" value="<?php echo $rowLord['bank_acc']; ?>">
+                                    <input type="text" class="form-control mt-3" placeholder="Remake" name="remake"
+                                        value="<?php echo $rowLord['remarks']; ?>">
                                 </div>
                                 <div id="step-5" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
                                     <h3>Photos</h3>
@@ -498,7 +517,7 @@ header('Content-Type: text/html; charset=utf-8');
                                         </table>
                                     </div>
                                     <button type="submit" name="submit"
-                                        class="btn btn-block font-weight-bold log_btn btn-lg mt-4">SUBMIT</button>
+                                        class="btn btn-block font-weight-bold log_btn btn-lg mt-4">UPDATE</button>
                                 </div>
 
                             </div>

@@ -113,7 +113,7 @@ class Property extends database
         $res = mysqli_query($this->link, $sql);
         if (mysqli_num_rows($res) > 0) {
             $alphabet = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
-            return $alphabet[$room - 1];
+            return $alphabet[$room];
         } else {
             return $room;
         }

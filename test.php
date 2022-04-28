@@ -1,5 +1,22 @@
 <?php
 session_start();
+if (isset($_POST['submit'])) {
+    // for ($i = 1; $i <= count($_POST['t']); $i++) {
+    //     for ($j = 1; $j <= 2; $j++) {
+    //         $t = (isset($_POST['t'][$i][$j]) ? 'Yes' : 'No');
+    //         $z = (isset($_POST['z'][$i][$j]) ? 'Yes' : 'No');
+    //         echo $t . ' ' . $z . '<br>';
+    //     }
+    // }
+    echo count($_POST['t']);
+    for ($i = 1; $i <= 3; $i++) {
+
+        $t = (isset($_POST['t'][$i]) ? 'Yes' : 'No');
+        $z = (isset($_POST['z'][$i]) ? 'Yes' : 'No');
+        echo $t . ' ' . $z . '<br>';
+    }
+    echo count($_POST['t']);
+}
 
 ?>
 
@@ -64,41 +81,17 @@ session_start();
 <body class="bg-light">
     <?php include('layout/navbar.php'); ?>
 
-    <section>
-        <div class="container">
-            <button class="btn btn-info" id="btn">Click</button>
-            <table id="example" class="table table-striped table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="show-class">
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td class="show-class">Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr class="show-class">
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+    <form action="" method="post">
+        <section>
+            <input type="checkbox" name="t[1][]" value="Yes"> yes
+            <input type="checkbox" name="z[1][]" value="Yes"> yes <br>
+            <input type="checkbox" name="t[2][]" value="Yes"> yes
+            <input type="checkbox" name="z[2][]" value="Yes"> yes <br>
+            <input type="checkbox" name="t[3][]" value="Yes"> yes
+            <input type="checkbox" name="z[3][]" value="Yes"> yes <br>
+            <input type="submit" name="submit">
+        </section>
+    </form>
 
 
     <?php include('layout/footer.php'); ?>

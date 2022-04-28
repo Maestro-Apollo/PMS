@@ -36,16 +36,16 @@ class signInUp extends database
                     $gross_area = $_POST['gross_area'][$i];
                     $salesable_area = $_POST['salesable_area'][$i];
                     $rent = $_POST['rent'][$i];
-
-                    $Windows = (isset($_POST['Windows'][$i]) ? $_POST['Windows'][$i] : 'No');
-                    $Lavatory = (isset($_POST['Lavatory'][$i]) ? $_POST['Lavatory'][$i] : 'No');
-                    $Shower = (isset($_POST['Shower'][$i]) ? $_POST['Shower'][$i] : 'No');
-                    $Sink = (isset($_POST['Sink'][$i]) ? $_POST['Sink'][$i] : 'No');
-                    $Wide_door = (isset($_POST['Wide_door'][$i]) ? $_POST['Wide_door'][$i] : 'No');
-                    $Brickes_wall = (isset($_POST['Brickes_wall'][$i]) ? $_POST['Brickes_wall'][$i] : 'No');
-                    $Seprate_room = (isset($_POST['Seprate_room'][$i]) ? $_POST['Seprate_room'][$i] : 'No');
-                    $Electronic_keys = (isset($_POST['Electronic_keys'][$i]) ? $_POST['Electronic_keys'][$i] : 'No');
-                    $Wifi = (isset($_POST['Wifi'][$i]) ? $_POST['Wifi'][$i] : 'No');
+                    $inner = $i + 1;
+                    $Windows = (isset($_POST['Windows'][$inner]) ? 'Yes' : 'No');
+                    $Lavatory = (isset($_POST['Lavatory'][$inner]) ? 'Yes' : 'No');
+                    $Shower = (isset($_POST['Shower'][$inner]) ? 'Yes' : 'No');
+                    $Sink = (isset($_POST['Sink'][$inner]) ? 'Yes' : 'No');
+                    $Wide_door = (isset($_POST['Wide_door'][$inner]) ? 'Yes' : 'No');
+                    $Brickes_wall = (isset($_POST['Brickes_wall'][$inner]) ? 'Yes' : 'No');
+                    $Seprate_room = (isset($_POST['Seprate_room'][$inner]) ? 'Yes' : 'No');
+                    $Electronic_keys = (isset($_POST['Electronic_keys'][$inner]) ? 'Yes' : 'No');
+                    $Wifi = (isset($_POST['Wifi'][$inner]) ? 'Yes' : 'No');
 
                     // $Windows = $_POST['Windows'][$i];
                     // $Lavatory = $_POST['Lavatory'][$i];
@@ -66,19 +66,20 @@ class signInUp extends database
             }
 
             for ($j = 0; $j < count($_POST['keyNumber']); $j++) {
-                $Individual = (isset($_POST['Individual'][$j]) ? $_POST['Individual'][$j] : 'No');
-                $Seprate = (isset($_POST['Seprate'][$j]) ? $_POST['Seprate'][$j] : 'No');
-                $Studio = (isset($_POST['Studio'][$j]) ? $_POST['Studio'][$j] : 'No');
-                $Yoga = (isset($_POST['Yoga'][$j]) ? $_POST['Yoga'][$j] : 'No');
-                $Class = (isset($_POST['Class'][$j]) ? $_POST['Class'][$j] : 'No');
-                $Overnight = (isset($_POST['Overnight'][$j]) ? $_POST['Overnight'][$j] : 'No');
-                $Warehouse_office = (isset($_POST['Warehouse_office'][$j]) ? $_POST['Warehouse_office'][$j] : 'No');
-                $Beauty = (isset($_POST['Beauty'][$j]) ? $_POST['Beauty'][$j] : 'No');
-                $Upstair_shop = (isset($_POST['Upstair_shop'][$j]) ? $_POST['Upstair_shop'][$j] : 'No');
-                $Band = (isset($_POST['Band'][$j]) ? $_POST['Band'][$j] : 'No');
-                $Recording_room = (isset($_POST['Recording_room'][$j]) ? $_POST['Recording_room'][$j] : 'No');
-                $piano = (isset($_POST['piano'][$j]) ? $_POST['piano'][$j] : 'No');
-                $Painting = (isset($_POST['Painting'][$j]) ? $_POST['Painting'][$j] : 'No');
+                $inner = $j + 1;
+                $Individual = (isset($_POST['Individual'][$inner]) ? 'Yes' : 'No');
+                $Seprate = (isset($_POST['Seprate'][$inner]) ? 'Yes' : 'No');
+                $Studio = (isset($_POST['Studio'][$inner]) ? 'Yes' : 'No');
+                $Yoga = (isset($_POST['Yoga'][$inner]) ? 'Yes' : 'No');
+                $Class = (isset($_POST['Class'][$inner]) ? 'Yes' : 'No');
+                $Overnight = (isset($_POST['Overnight'][$inner]) ? 'Yes' : 'No');
+                $Warehouse_office = (isset($_POST['Warehouse_office'][$inner]) ? 'Yes' : 'No');
+                $Beauty = (isset($_POST['Beauty'][$inner]) ? 'Yes' : 'No');
+                $Upstair_shop = (isset($_POST['Upstair_shop'][$inner]) ? 'Yes' : 'No');
+                $Band = (isset($_POST['Band'][$inner]) ? 'Yes' : 'No');
+                $Recording_room = (isset($_POST['Recording_room'][$inner]) ? 'Yes' : 'No');
+                $piano = (isset($_POST['piano'][$inner]) ? 'Yes' : 'No');
+                $Painting = (isset($_POST['Painting'][$inner]) ? 'Yes' : 'No');
 
 
 
@@ -527,39 +528,39 @@ $code = $rand;
                                                     <td><input type="number" class="form-control" name="salesable_area[]">
                                                     </td>
                                                     <td><input type="number" class="form-control" name="rent[]"></td>
-                                                    <td><input type="checkbox" class="checkBoxClassP1" value="Yes" name="Windows[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClassP2" value="Yes" name="Lavatory[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClassP3" value="Yes" name="Shower[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClassP4" value="Yes" name="Sink[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClassP5" value="Yes" name="Wide_door[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClassP6" value="Yes" name="Brickes_wall[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClassP7" value="Yes" name="Seprate_room[]" /> Yes
+                                                    <td><input type="checkbox" class="checkBoxClassP1" value="Yes" name="Windows[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP2" value="Yes" name="Lavatory[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP3" value="Yes" name="Shower[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP4" value="Yes" name="Sink[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP5" value="Yes" name="Wide_door[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP6" value="Yes" name="Brickes_wall[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP7" value="Yes" name="Seprate_room[${i}][]" /> Yes
                                                     </td>
-                                                    <td><input type="checkbox" class="checkBoxClassP8" value="Yes" name="Electronic_keys[]" /> Yes
+                                                    <td><input type="checkbox" class="checkBoxClassP8" value="Yes" name="Electronic_keys[${i}][]" /> Yes
                                                     </td>
-                                                    <td><input type="checkbox" class="checkBoxClassP9" value="Yes" name="Wifi[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClassP9" value="Yes" name="Wifi[${i}][]" /> Yes</td>
                                                     <td><input type="text" class="form-control" name="Remarks[]"></td>
                                                 </tr>`);
 
                 string2 += (`<tr>
                                                     <th scope="row">${i}</th>
 <input type="hidden" value="Yes" name="keyNumber[]" />
-                                                    <td><input type="checkbox" class="checkBoxClass1" value="Yes" name="Individual[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass2" value="Yes" name="Seprate[]" /> Yes
+                                                    <td><input type="checkbox" class="checkBoxClass1" value="Yes" name="Individual[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass2" value="Yes" name="Seprate[${i}][]" /> Yes
                                                     </td>
-                                                    <td><input type="checkbox" class="checkBoxClass3" value="Yes" name="Studio[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass4" value="Yes" name="Yoga[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass5" value="Yes" name="Class[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass6" value="Yes" name="Overnight[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass7" value="Yes" name="Warehouse_office[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass8" value="Yes" name="Beauty[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass9" value="Yes" name="Upstair_shop[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass10" value="Yes" name="Band[]" /> Yes
+                                                    <td><input type="checkbox" class="checkBoxClass3" value="Yes" name="Studio[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass4" value="Yes" name="Yoga[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass5" value="Yes" name="Class[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass6" value="Yes" name="Overnight[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass7" value="Yes" name="Warehouse_office[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass8" value="Yes" name="Beauty[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass9" value="Yes" name="Upstair_shop[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass10" value="Yes" name="Band[${i}][]" /> Yes
                                                     </td>
-                                                    <td><input type="checkbox" class="checkBoxClass11" value="Yes" name="Recording_room[]" /> Yes
+                                                    <td><input type="checkbox" class="checkBoxClass11" value="Yes" name="Recording_room[${i}][]" /> Yes
                                                     </td>
-                                                    <td><input type="checkbox" class="checkBoxClass12" value="Yes" name="piano[]" /> Yes</td>
-                                                    <td><input type="checkbox" class="checkBoxClass13" value="Yes" name="Painting[]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass12" value="Yes" name="piano[${i}][]" /> Yes</td>
+                                                    <td><input type="checkbox" class="checkBoxClass13" value="Yes" name="Painting[${i}][]" /> Yes</td>
                                                     <td><input type="text" class="form-control" name="Remarks[]"></td>
                                                 </tr>`);
 
