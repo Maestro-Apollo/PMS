@@ -412,63 +412,63 @@ header('Content-Type: text/html; charset=utf-8');
                                                         value="<?php echo $row['types_room_no']; ?>">
                                                     <input type="hidden" value="Yes" name="keyNumber[]" />
                                                     <td><input type="checkbox" class="checkBoxClass1" value="Yes"
-                                                            name="Individual[]"
+                                                            name="Individual[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['individual']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass2" value="Yes"
-                                                            name="Seprate[]"
+                                                            name="Seprate[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['seprate']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes
                                                     </td>
                                                     <td><input type="checkbox" class="checkBoxClass3" value="Yes"
-                                                            name="Studio[]"
+                                                            name="Studio[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['studio']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass4" value="Yes"
-                                                            name="Yoga[]"
+                                                            name="Yoga[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['yoga']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass5" value="Yes"
-                                                            name="Class[]"
+                                                            name="Class[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['class']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass6" value="Yes"
-                                                            name="Overnight[]"
+                                                            name="Overnight[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['overnight']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass7" value="Yes"
-                                                            name="Warehouse_office[]"
+                                                            name="Warehouse_office[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['warehouse_office']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass8" value="Yes"
-                                                            name="Beauty[]"
+                                                            name="Beauty[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['beauty']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass9" value="Yes"
-                                                            name="Upstair_shop[]"
+                                                            name="Upstair_shop[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['upstair_shop']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass10" value="Yes"
-                                                            name="Band[]"
+                                                            name="Band[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['band']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes
                                                     </td>
                                                     <td><input type="checkbox" class="checkBoxClass11" value="Yes"
-                                                            name="Recording_room[]"
+                                                            name="Recording_room[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['recording_room']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes
                                                     </td>
                                                     <td><input type="checkbox" class="checkBoxClass12" value="Yes"
-                                                            name="piano[]"
+                                                            name="piano[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['piano']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="checkbox" class="checkBoxClass13" value="Yes"
-                                                            name="Painting[]"
+                                                            name="Painting[<?php echo $row['types_room_no']; ?>][]"
                                                             <?php echo ((($row['painting']) == 'Yes') ? 'checked' : '') ?> />
                                                         Yes</td>
                                                     <td><input type="text" class="form-control"
-                                                            value="<?php echo $row['types_room_no']; ?>"
-                                                            name="Remarks[]"></td>
+                                                            value="<?php echo $row['remarks']; ?>" name="Remarks[]">
+                                                    </td>
                                                 </tr>
                                                 <?php } ?>
                                                 <?php } ?>

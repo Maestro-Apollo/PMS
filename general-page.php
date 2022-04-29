@@ -113,6 +113,7 @@ class Property extends database
         $res = mysqli_query($this->link, $sql);
         if (mysqli_num_rows($res) > 0) {
             $alphabet = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+            $room--;
             return $alphabet[$room];
         } else {
             return $room;
@@ -186,8 +187,9 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                     </div>
                     <div class="divider mb-5 mt-3"></div>
 
-                    <h4 class="font-weight-bold">Building Info: <span
-                            class="text-secondary"><?php echo $rowInfo['building']; ?></span></h4>
+                    <h4 class="font-weight-bold">Building Info: <a
+                            href="./search-data.php?info=<?php echo $rowInfo['building']; ?>"><span
+                                class="text-info"><?php echo $rowInfo['building']; ?></span></a></h4>
                     <div class="divider mb-3"></div>
                     <div class="row">
                         <div class="col-6">
@@ -195,8 +197,9 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                                     class="text-secondary"><?php echo $rowInfo['district']; ?></span></h5>
                         </div>
                         <div class="col-6">
-                            <h5 class="font-weight-bold">Street: <span
-                                    class="text-secondary"><?php echo $rowInfo['street']; ?></span></h5>
+                            <h5 class="font-weight-bold">Street: <a
+                                    href="./search-data.php?info=<?php echo $rowInfo['street']; ?>"><span
+                                        class="text-info"><?php echo $rowInfo['street']; ?></span></a></h5>
                         </div>
                         <div class="col-6">
                             <h5 class="font-weight-bold">Floor: <span
@@ -236,17 +239,20 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                     <div class="divider mb-3"></div>
                     <div class="row">
                         <div class="col-6">
-                            <h5 class="font-weight-bold">Person in charge: <span
-                                    class="text-secondary"><?php echo $rowLandLord['in_charges']; ?></span></h5>
+                            <h5 class="font-weight-bold">Person in charge: <a
+                                    href="./search-data.php?info=<?php echo $rowLandLord['in_charges']; ?>"><span
+                                        class="text-info"><?php echo $rowLandLord['in_charges']; ?></span></a></h5>
                         </div>
                         <div class="col-6">
-                            <h5 class="font-weight-bold">LandLord Name: <span
-                                    class="text-secondary"><?php echo $rowLandLord['landlord_name']; ?></span></h5>
+                            <h5 class="font-weight-bold">LandLord Name: <a
+                                    href="./search-data.php?info=<?php echo $rowLandLord['landlord_name']; ?>"><span
+                                        class="text-info"><?php echo $rowLandLord['landlord_name']; ?></span></a></h5>
                         </div>
 
                         <div class="col-6">
-                            <h5 class="font-weight-bold">Telephone 1: <span
-                                    class="text-secondary"><?php echo $rowLandLord['tel1']; ?></span></h5>
+                            <h5 class="font-weight-bold">Telephone 1: <span class="text-info"><a
+                                        href="./search-data.php?info=<?php echo $rowLandLord['tel1']; ?>"><?php echo $rowLandLord['tel1']; ?></a></span>
+                            </h5>
                         </div>
                         <?php if ($rowLandLord['tel2'] !== '') { ?>
                         <div class="col-6">
@@ -358,7 +364,7 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                                 <?php if ($photos) { ?>
                                 <?php while ($all = mysqli_fetch_assoc($photos)) { ?>
                                 <div class="col-md-4">
-                                    <a href="files/<?php echo $all['image']; ?>"><img
+                                    <a target="_blank" href="files/<?php echo $all['image']; ?>"><img
                                             src="files/<?php echo $all['image']; ?>" alt=""></a>
                                 </div>
                                 <?php } ?>

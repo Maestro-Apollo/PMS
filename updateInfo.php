@@ -31,15 +31,17 @@ class signInUp extends database
                     $salesable_area = $_POST['salesable_area'][$i];
                     $rent = $_POST['rent'][$i];
 
-                    $Windows = (isset($_POST['Windows'][$i]) ? 'Yes' : 'No');
-                    $Lavatory = (isset($_POST['Lavatory'][$i]) ? 'Yes' : 'No');
-                    $Shower = (isset($_POST['Shower'][$i]) ? 'Yes'  : 'No');
-                    $Sink = (isset($_POST['Sink'][$i]) ? 'Yes'  : 'No');
-                    $Wide_door = (isset($_POST['Wide_door'][$i]) ? 'Yes'  : 'No');
-                    $Brickes_wall = (isset($_POST['Brickes_wall'][$i]) ? 'Yes' : 'No');
-                    $Seprate_room = (isset($_POST['Seprate_room'][$i]) ? 'Yes'  : 'No');
-                    $Electronic_keys = (isset($_POST['Electronic_keys'][$i]) ? 'Yes'  : 'No');
-                    $Wifi = (isset($_POST['Wifi'][$i]) ? 'Yes'  : 'No');
+                    $inner = $i + 1;
+
+                    $Windows = (isset($_POST['Windows'][$inner]) ? 'Yes' : 'No');
+                    $Lavatory = (isset($_POST['Lavatory'][$inner]) ? 'Yes' : 'No');
+                    $Shower = (isset($_POST['Shower'][$inner]) ? 'Yes'  : 'No');
+                    $Sink = (isset($_POST['Sink'][$inner]) ? 'Yes'  : 'No');
+                    $Wide_door = (isset($_POST['Wide_door'][$inner]) ? 'Yes'  : 'No');
+                    $Brickes_wall = (isset($_POST['Brickes_wall'][$inner]) ? 'Yes' : 'No');
+                    $Seprate_room = (isset($_POST['Seprate_room'][$inner]) ? 'Yes'  : 'No');
+                    $Electronic_keys = (isset($_POST['Electronic_keys'][$inner]) ? 'Yes'  : 'No');
+                    $Wifi = (isset($_POST['Wifi'][$inner]) ? 'Yes'  : 'No');
 
                     // $Windows = $_POST['Windows'][$i];
                     // $Lavatory = $_POST['Lavatory'][$i];
@@ -51,7 +53,7 @@ class signInUp extends database
                     // $Electronic_keys = $_POST['Electronic_keys'][$i];
                     // $Wifi = $_POST['Wifi'][$i];
                     $Remarks = addslashes(trim($_POST['Remarks'][$i]));
-                    $room_num = $_POST['rn1'][$i];
+                    $room_num = $i + 1;
 
                     $sql2 = "UPDATE `facilties` SET `gross_area`='$gross_area',`salesable_area`='$salesable_area',`rent`='$rent',`windows`='$Windows',`lavatory`='$Lavatory',`shower`='$Shower',`sink`='$Sink',`wide_door`='$Wide_door',`brickes_wall`='$Brickes_wall',`seprate_room`='$Seprate_room',`electronic_keys`='$Electronic_keys',`wifi`='$Wifi',`remarks`='$Remarks' WHERE `code` = '$code' AND room_number = '$room_num' ";
 
@@ -60,19 +62,21 @@ class signInUp extends database
             }
 
             for ($j = 0; $j < count($_POST['keyNumber']); $j++) {
-                $Individual = (isset($_POST['Individual'][$j]) ? $_POST['Individual'][$j] : 'No');
-                $Seprate = (isset($_POST['Seprate'][$j]) ? $_POST['Seprate'][$j] : 'No');
-                $Studio = (isset($_POST['Studio'][$j]) ? $_POST['Studio'][$j] : 'No');
-                $Yoga = (isset($_POST['Yoga'][$j]) ? $_POST['Yoga'][$j] : 'No');
-                $Class = (isset($_POST['Class'][$j]) ? $_POST['Class'][$j] : 'No');
-                $Overnight = (isset($_POST['Overnight'][$j]) ? $_POST['Overnight'][$j] : 'No');
-                $Warehouse_office = (isset($_POST['Warehouse_office'][$j]) ? $_POST['Warehouse_office'][$j] : 'No');
-                $Beauty = (isset($_POST['Beauty'][$j]) ? $_POST['Beauty'][$j] : 'No');
-                $Upstair_shop = (isset($_POST['Upstair_shop'][$j]) ? $_POST['Upstair_shop'][$j] : 'No');
-                $Band = (isset($_POST['Band'][$j]) ? $_POST['Band'][$j] : 'No');
-                $Recording_room = (isset($_POST['Recording_room'][$j]) ? $_POST['Recording_room'][$j] : 'No');
-                $piano = (isset($_POST['piano'][$j]) ? $_POST['piano'][$j] : 'No');
-                $Painting = (isset($_POST['Painting'][$j]) ? $_POST['Painting'][$j] : 'No');
+
+                $inner = $j + 1;
+                $Individual = (isset($_POST['Individual'][$inner]) ? 'Yes' : 'No');
+                $Seprate = (isset($_POST['Seprate'][$inner]) ? 'Yes' : 'No');
+                $Studio = (isset($_POST['Studio'][$inner]) ? 'Yes' : 'No');
+                $Yoga = (isset($_POST['Yoga'][$inner]) ? 'Yes' : 'No');
+                $Class = (isset($_POST['Class'][$inner]) ? 'Yes' : 'No');
+                $Overnight = (isset($_POST['Overnight'][$inner]) ? 'Yes' : 'No');
+                $Warehouse_office = (isset($_POST['Warehouse_office'][$inner]) ? 'Yes' : 'No');
+                $Beauty = (isset($_POST['Beauty'][$inner]) ? 'Yes' : 'No');
+                $Upstair_shop = (isset($_POST['Upstair_shop'][$inner]) ? 'Yes' : 'No');
+                $Band = (isset($_POST['Band'][$inner]) ? 'Yes' : 'No');
+                $Recording_room = (isset($_POST['Recording_room'][$inner]) ? 'Yes' : 'No');
+                $piano = (isset($_POST['piano'][$inner]) ? 'Yes' : 'No');
+                $Painting = (isset($_POST['Painting'][$inner]) ? 'Yes' : 'No');
 
 
 
@@ -93,7 +97,7 @@ class signInUp extends database
                 // $Painting = $_POST['Painting'][$j];
                 $Remarks2 = addslashes(trim($_POST['Remarks'][$j]));
 
-                $room_no = $_POST['rn2'][$j];
+                $room_no = $j + 1;
 
 
                 $sql3 = "UPDATE `types` SET `individual`='$Individual',`seprate`='$Seprate',`studio`='$Studio',`yoga`='$Yoga',`class`='$Class',`overnight`='$Overnight',`warehouse_office`='$Warehouse_office',`beauty`='$Beauty',`upstair_shop`='$Upstair_shop',`band`='$Band',`recording_room`='$Recording_room',`piano`='$piano',`painting`='$Painting',`remarks`='$Remarks2' WHERE `code` = '$code' AND `types_room_no` = '$room_no' ";

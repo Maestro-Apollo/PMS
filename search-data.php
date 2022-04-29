@@ -80,9 +80,26 @@ session_start();
                     <thead>
                         <tr>
                             <th>Code</th>
+                            <th>In Charge</th>
+                            <th>Tel 1</th>
+                            <th>Tel 2</th>
+                            <th>Tel 3</th>
+                            <th>Landlord Name</th>
+                            <th>Bank</th>
+                            <th>Bank Account</th>
+                            <th>Remarks</th>
                             <th>District</th>
                             <th>Street</th>
                             <th>Building</th>
+                            <th>Floor</th>
+                            <th>Flat</th>
+                            <th>Room Number</th>
+                            <th>Entry Password</th>
+                            <th>Block</th>
+                            <th>Cargo Lift</th>
+                            <th>Customer Lift</th>
+                            <th>24 Hour</th>
+
 
 
                         </tr>
@@ -106,7 +123,15 @@ session_start();
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+    <script>
 
+    </script>
     <script>
     var userDataTable = $('#userTable').DataTable({
         'processing': true,
@@ -116,18 +141,55 @@ session_start();
             targets: 0
         }],
         'serverMethod': 'post',
-        "pageLength": 50,
+        "pageLength": 10,
         'ajax': {
-            'url': 'ajax-property-list.php'
+            'url': 'ajax-search-data.php',
+            'data': {
+                'myKey': '<?php echo $_GET['info']; ?>'
+            },
+
+
         },
         'columns': [{
             data: 'code'
+        }, {
+            data: 'in_charges'
+        }, {
+            data: 'tel1'
+        }, {
+            data: 'tel2'
+        }, {
+            data: 'tel3'
+        }, {
+            data: 'landlord_name'
+        }, {
+            data: 'bank'
+        }, {
+            data: 'bank_acc'
+        }, {
+            data: 'remarks'
         }, {
             data: 'district'
         }, {
             data: 'street'
         }, {
             data: 'building'
+        }, {
+            data: 'floor'
+        }, {
+            data: 'flat'
+        }, {
+            data: 'no_room'
+        }, {
+            data: 'enter_password'
+        }, {
+            data: 'block'
+        }, {
+            data: 'cargo_lift'
+        }, {
+            data: 'customer_lift'
+        }, {
+            data: 'tf_hr'
         }, ]
     });
     </script>
