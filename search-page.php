@@ -47,7 +47,8 @@ $obj = new Property;
 
             <form action="./search-result.php" method="post" class="p-3">
                 <label for="" class="mt-3 font-weight-bold">Building Info</label>
-                <input type="text" name="building" class="form-control " required>
+                <input type="text" name="building" placeholder="Code, District, Street, Building, Flat, Floor"
+                    class="form-control " required>
                 <div class="d-block">
                     <div class="float-left">
                         <p class="mt-3 mb-0 font-weight-bold ">Facilities <i class="fas fa-arrow-right"></i></p>
@@ -101,28 +102,9 @@ $obj = new Property;
 
                     </div>
                 </div>
+
                 <div class="row mt-3">
-                    <div class="col-6">
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="Cargo" value="Yes" id="Cargo" checked>
-                            <label class="form-check-label" for="Cargo">Cargo Lift</label>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="Customer" value="Yes" id="Customer"
-                                checked>
-                            <label class="form-check-label" for="Customer">Customer Lift</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="hours" value="Yes" id="hours" checked>
-                            <label class="form-check-label" for="hours">24 hours</label>
-                        </div>
-                    </div>
+
                     <div class="col-6">
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" name="Windows" value="Yes" id="Windows"

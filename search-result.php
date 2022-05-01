@@ -17,9 +17,7 @@ class Property extends database
         $sailable2 = ($_POST['sailable2']) ? addslashes(trim($_POST['sailable2'])) : 0;
         $price1 = ($_POST['price1']) ? addslashes(trim($_POST['price1'])) : 0;
         $price2 = ($_POST['price2']) ? addslashes(trim($_POST['price2'])) : 0;
-        $Cargo = (isset($_POST['Cargo'])) ? addslashes(trim($_POST['Cargo'])) : 'No';
-        $Customer = (isset($_POST['Customer'])) ? addslashes(trim($_POST['Customer'])) : 'No';
-        $hours = (isset($_POST['hours'])) ? addslashes(trim($_POST['hours'])) : 'No';
+
         $Windows = (isset($_POST['Windows'])) ? addslashes(trim($_POST['Windows'])) : 'No';
         $Lavatory = (isset($_POST['Lavatory'])) ? addslashes(trim($_POST['Lavatory'])) : 'No';
         $Shower = (isset($_POST['Shower'])) ? addslashes(trim($_POST['Shower'])) : 'No';
@@ -78,10 +76,7 @@ class Property extends database
 
 
 
-        $searchQuery2 = "  (facilties.cargo_lift = '" . $Cargo . "' AND 
-        facilties.customer_lift = '" . $Customer . "' AND 
-        facilties.tf_hours = '" . $hours . "' AND 
-        facilties.windows = '" . $Windows . "' AND 
+        $searchQuery2 = "  (facilties.windows = '" . $Windows . "' AND 
         facilties.lavatory = '" . $Lavatory . "' AND 
         facilties.shower = '" . $Shower . "' AND 
         facilties.sink = '" . $Sink . "' AND 
@@ -192,24 +187,36 @@ $objShow = $obj->searchFunc();
                     <li class="breadcrumb-item"><a href="./general-page.php?code=<?php echo $row['code']; ?>"
                             target="_blank"><?php echo $row['building']; ?></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo $row['floor']; ?></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo $row['flat']; ?></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo $row['no_room']; ?></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo $row['gross_area']; ?></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo $row['salesable_area']; ?></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo $row['rent']; ?></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a
+                            href="./search-data.php?info=<?php echo $row['floor']; ?>"><?php echo $row['floor']; ?></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><a
+                            href="./search-data.php?info=<?php echo $row['flat']; ?>"><?php echo $row['flat']; ?></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><a
+                            href="./search-data.php?info=<?php echo $row['no_room']; ?>"><?php echo $row['no_room']; ?></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><a
+                            href="./search-data.php?info=<?php echo $row['gross_area']; ?>"><?php echo $row['gross_area']; ?></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><a
+                            href="./search-data.php?info=<?php echo $row['salesable_area']; ?>"><?php echo $row['salesable_area']; ?></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><a
+                            href="./search-data.php?info=<?php echo $row['rent']; ?>"><?php echo $row['rent']; ?></a>
+                    </li>
                 </ol>
             </nav>
             <?php } ?>
             <?php } ?>
 
-            <?php mysqli_data_seek($objShow, 0) ?>
 
             <h4 class="font-weight-bold mt-3">Photos</h4>
             <!-- <a href="https://api.whatsapp.com/send?text=www.google.com" data-action="share/whatsapp/share">Share via
                 Whatsapp web</a> -->
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <?php mysqli_data_seek($objShow, 0) ?>
 
                 <?php if ($objShow) { ?>
                 <?php while ($row = mysqli_fetch_assoc($objShow)) { ?>

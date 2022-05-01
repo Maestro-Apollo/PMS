@@ -104,6 +104,7 @@ class Property extends database
         } else {
             return false;
         }
+
         # code...
     }
     public function displayRoom($room)

@@ -3,7 +3,7 @@
 class database
 {
     // These variables will help you to connect with database
-    private $hostname = "localhost:3325";
+    private $hostname = "localhost";
     private $username = "root";
     private $password = "";
     private $dbname = "pms";

@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost:3325"; /* Host name */
+$host = "localhost"; /* Host name */
 $user = "root"; /* User */
 $password = ""; /* Password */
 $dbname = "pms"; /* Database name */
