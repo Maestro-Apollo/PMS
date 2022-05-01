@@ -99,9 +99,6 @@ session_start();
                             <th>Cargo Lift</th>
                             <th>Customer Lift</th>
                             <th>24 Hour</th>
-                            <th>Gross Area</th>
-                            <th>Saleable Area</th>
-                            <th>Rent</th>
 
 
 
@@ -193,12 +190,6 @@ session_start();
             data: 'customer_lift'
         }, {
             data: 'tf_hr'
-        }, {
-            data: 'gross_area'
-        }, {
-            data: 'salesable_area'
-        }, {
-            data: 'rent'
         }, ]
     });
     </script>

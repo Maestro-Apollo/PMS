@@ -47,26 +47,23 @@ if ($request == 1) {
         building_info.enter_password like '%" . $searchValue . "%' or 
         building_info.cargo_lift like '%" . $searchValue . "%' or 
         building_info.customer_lift like '%" . $searchValue . "%' or 
-        building_info.tf_hr like '%" . $searchValue . "%' or 
-        facilties.gross_area like '%" . $searchValue . "%' or 
-        facilties.salesable_area like '%" . $searchValue . "%' or 
-        facilties.rent like '%" . $searchValue . "%')  ";
+        building_info.tf_hr like '%" . $searchValue . "%')  ";
     }
 
-    $extraCondition = " landlord_details.in_charges = '" . $info . "' OR landlord_details.tel1 = '" . $info . "' OR landlord_details.landlord_name = '" . $info . "' OR building_info.street = '" . $info . "' OR building_info.building = '" . $info . "' OR facilties.gross_area = '" . $info . "' OR facilties.salesable_area = '" . $info . "' OR facilties.rent = '" . $info . "'";
+    $extraCondition = " landlord_details.in_charges = '" . $info . "' OR landlord_details.tel1 = '" . $info . "' OR landlord_details.landlord_name = '" . $info . "' OR building_info.street = '" . $info . "' OR building_info.building = '" . $info . "'";
 
     ## Total number of records without filtering
-    $sel = mysqli_query($con, "SELECT count(*) as allcount FROM landlord_details INNER JOIN building_info ON landlord_details.code = building_info.code INNER JOIN facilties ON landlord_details.code = facilties.code WHERE" . $extraCondition);
+    $sel = mysqli_query($con, "SELECT count(*) as allcount FROM landlord_details INNER JOIN building_info ON landlord_details.code = building_info.code WHERE" . $extraCondition);
     $records = mysqli_fetch_assoc($sel);
     $totalRecords = $records['allcount'];
 
     ## Total number of records with filtering
-    $sel = mysqli_query($con, "SELECT count(*) as allcount FROM landlord_details INNER JOIN building_info ON landlord_details.code = building_info.code INNER JOIN facilties ON landlord_details.code = facilties.code WHERE" . $extraCondition . $searchQuery);
+    $sel = mysqli_query($con, "SELECT count(*) as allcount FROM landlord_details INNER JOIN building_info ON landlord_details.code = building_info.code WHERE" . $extraCondition . $searchQuery);
     $records = mysqli_fetch_assoc($sel);
     $totalRecordwithFilter = $records['allcount'];
 
     ## Fetch records
-    $empQuery = "SELECT * FROM landlord_details INNER JOIN building_info ON landlord_details.code = building_info.code INNER JOIN facilties ON landlord_details.code = facilties.code WHERE" . $extraCondition . $searchQuery . " order by " . $columnName . " " . $columnSortOrder . " limit " . $row . "," . $rowperpage;
+    $empQuery = "SELECT * FROM landlord_details INNER JOIN building_info ON landlord_details.code = building_info.code WHERE" . $extraCondition . $searchQuery . " order by " . $columnName . " " . $columnSortOrder . " limit " . $row . "," . $rowperpage;
     $empRecords = mysqli_query($con, $empQuery);
     $data = array();
 
@@ -103,9 +100,6 @@ if ($request == 1) {
             "cargo_lift" => $row['cargo_lift'],
             "customer_lift" => $row['customer_lift'],
             "tf_hr" => $row['tf_hr'],
-            "gross_area" => $row['gross_area'],
-            "salesable_area" => $row['salesable_area'],
-            "rent" => $row['rent'],
 
         );
     }

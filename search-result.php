@@ -1,6 +1,8 @@
 <?php
-require './class/database.php';
 session_start();
+error_reporting(0);
+require './class/database.php';
+
 class Property extends database
 {
     public function searchFunc()
@@ -103,17 +105,17 @@ class Property extends database
 
 
         if ($include1 == 'Yes' && $include2 == 'Yes') {
-            $sql = "SELECT * FROM `facilties` LEFT JOIN types ON facilties.facilties_id = types.types_id LEFT JOIN building_info ON building_info.code = facilties.code WHERE building_info.code IS NOT NULL $searchQuery1 AND $searchQuery2 AND $searchQuery3";
+            $sql = "SELECT * FROM `facilties` LEFT JOIN types ON facilties.facilties_id = types.types_id LEFT JOIN building_info ON building_info.code = facilties.code WHERE building_info.code IS NOT NULL $searchQuery1 AND $searchQuery2 AND $searchQuery3 ";
         }
 
         if ($include1 == 'Yes' && $include2 == false) {
-            $sql = "SELECT * FROM `facilties` LEFT JOIN types ON facilties.facilties_id = types.types_id LEFT JOIN building_info ON building_info.code = facilties.code WHERE building_info.code IS NOT NULL $searchQuery1 AND $searchQuery2 AND 1";
+            $sql = "SELECT * FROM `facilties` LEFT JOIN types ON facilties.facilties_id = types.types_id LEFT JOIN building_info ON building_info.code = facilties.code WHERE building_info.code IS NOT NULL $searchQuery1 AND $searchQuery2 AND 1 ";
         }
         if ($include1 == false && $include2 == 'Yes') {
-            $sql = "SELECT * FROM `facilties` LEFT JOIN types ON facilties.facilties_id = types.types_id LEFT JOIN building_info ON building_info.code = facilties.code WHERE building_info.code IS NOT NULL $searchQuery1 AND 1 AND $searchQuery3";
+            $sql = "SELECT * FROM `facilties` LEFT JOIN types ON facilties.facilties_id = types.types_id LEFT JOIN building_info ON building_info.code = facilties.code WHERE building_info.code IS NOT NULL $searchQuery1 AND 1 AND $searchQuery3 ";
         }
         if ($include1 == false && $include2 == false) {
-            $sql = "SELECT * FROM `facilties` LEFT JOIN types ON facilties.facilties_id = types.types_id LEFT JOIN building_info ON building_info.code = facilties.code WHERE building_info.code IS NOT NULL $searchQuery1 AND 1 AND 1";
+            $sql = "SELECT * FROM `facilties` LEFT JOIN types ON facilties.facilties_id = types.types_id LEFT JOIN building_info ON building_info.code = facilties.code WHERE building_info.code IS NOT NULL $searchQuery1 AND 1 AND 1 ";
         }
 
         $res = mysqli_query($this->link, $sql);
@@ -187,22 +189,22 @@ $objShow = $obj->searchFunc();
                     <li class="breadcrumb-item"><a href="./general-page.php?code=<?php echo $row['code']; ?>"
                             target="_blank"><?php echo $row['building']; ?></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><a
+                    <li class="breadcrumb-item active" aria-current="page"><a target="_blank"
                             href="./search-data.php?info=<?php echo $row['floor']; ?>"><?php echo $row['floor']; ?></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><a
+                    <li class="breadcrumb-item active" aria-current="page"><a target="_blank"
                             href="./search-data.php?info=<?php echo $row['flat']; ?>"><?php echo $row['flat']; ?></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><a
+                    <li class="breadcrumb-item active" aria-current="page"><a target="_blank"
                             href="./search-data.php?info=<?php echo $row['no_room']; ?>"><?php echo $row['no_room']; ?></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><a
+                    <li class="breadcrumb-item active" aria-current="page"><a target="_blank"
                             href="./search-data.php?info=<?php echo $row['gross_area']; ?>"><?php echo $row['gross_area']; ?></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><a
+                    <li class="breadcrumb-item active" aria-current="page"><a target="_blank"
                             href="./search-data.php?info=<?php echo $row['salesable_area']; ?>"><?php echo $row['salesable_area']; ?></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><a
+                    <li class="breadcrumb-item active" aria-current="page"><a target="_blank"
                             href="./search-data.php?info=<?php echo $row['rent']; ?>"><?php echo $row['rent']; ?></a>
                     </li>
                 </ol>

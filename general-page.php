@@ -165,6 +165,10 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
         height: 5px;
         width: 75%;
     }
+
+    .img-cursor {
+        cursor: pointer;
+    }
     </style>
 
 </head>
@@ -367,8 +371,8 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                                 <?php if ($photos) { ?>
                                 <?php while ($all = mysqli_fetch_assoc($photos)) { ?>
                                 <div class="col-md-4">
-                                    <a target="_blank" href="files/<?php echo $all['image']; ?>"><img
-                                            src="files/<?php echo $all['image']; ?>" alt=""></a>
+                                    <a target="_blank" class="img-cursor" href="files/<?php echo $all['image']; ?>"><img
+                                            src="files/<?php echo $all['image']; ?>" alt="" class="img-cursor"></a>
                                 </div>
                                 <?php } ?>
                                 <?php } ?>
