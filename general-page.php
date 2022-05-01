@@ -213,6 +213,7 @@ $rowPerson = mysqli_fetch_assoc($objPerson);
                             <h5 class="font-weight-bold">Number of room(s): <span
                                     class="text-secondary"><?php echo $rowInfo['no_room']; ?></span></h5>
                         </div>
+
                         <div class="col-6">
                             <h5 class="font-weight-bold">Cargo Lift: <span
                                     class="text-secondary"><?php echo $rowInfo['cargo_lift']; ?></span></h5>
